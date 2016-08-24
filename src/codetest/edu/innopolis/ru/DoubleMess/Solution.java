@@ -1,7 +1,9 @@
 package codetest.edu.innopolis.ru.DoubleMess;
 
 /**Statement
- * You found the data in a very strange format. Then you understood, that previous developer mixed sign S, significand M and exponent E in a double! Now they are in the following order: MES. Fix it. Read input.txt file. Write fixed result to output.txt.
+ * You found the data in a very strange format.
+ * Then you understood, that previous developer mixed sign S, significand M and exponent E in a double!
+ * Now they are in the following order: MES. Fix it. Read input.txt file. Write fixed result to output.txt.
 
  * Example:
 
