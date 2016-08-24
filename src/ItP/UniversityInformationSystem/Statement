@@ -1,0 +1,14 @@
+Assignment:
+A University Information System
+
+Design and develop a set of classes carrying
+information & functionality representing educational
+process in a university.
+- Classes should represent all aspects of the
+educational process.
+- Each class should have explicitly separated
+interface & implementation.
+- Main program will create a number of related
+objects of all classes.
+- Restrictions: no inheritance; minimal functionality
+(both will be added later).
