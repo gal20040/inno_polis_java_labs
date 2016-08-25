@@ -20,27 +20,30 @@ import java.util.Scanner;
 public class Solution {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int initialX = 0, initialY = 0;
+        int currentX = 0, currentY = 0;
 
-        System.out.println("What is control sequence?");
+//        System.out.println("What is control sequence?");
         String sequence = scanner.nextLine();
 
         for (int i = 0; i < sequence.length(); i++) {
             char c = sequence.charAt(i);
 
-//            switch (month) {//если month=3, то будет выполнен именно case 3
-//                case 1:
-//                    System.out.println("January");
-//                    break;
-//                case 2:
-//                    System.out.println("February");
-//                    break;
-//                case 3:
-//                    System.out.println("March");
-//                    break; //break нужен, чтобы не выполнялись последующие case
-//                case 4:
-//                    System.out.println("April"); break;
-//            }
+            switch (c) {
+                case 'L':
+                    currentX--;
+                    break;
+                case 'R':
+                    currentX++;
+                    break;
+                case 'D':
+                    currentY--;
+                    break;
+                case 'U':
+                    currentY++;
+                    break;
+            }
         }
+
+        System.out.println(currentX + " " + currentY);
     }
 }
