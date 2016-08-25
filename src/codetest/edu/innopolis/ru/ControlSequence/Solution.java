@@ -1,6 +1,9 @@
 package codetest.edu.innopolis.ru.ControlSequence;
 
-import java.util.Scanner;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Statement:
@@ -19,31 +22,41 @@ import java.util.Scanner;
  */
 public class Solution {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        String fileName = "input.txt";
         int currentX = 0, currentY = 0;
 
-//        System.out.println("What is control sequence?");
-        String sequence = scanner.nextLine();
+        InputStream in = null;
+        try {
+            in = new BufferedInputStream(new FileInputStream(fileName));
+            int data;
 
-        for (int i = 0; i < sequence.length(); i++) {
-            char c = sequence.charAt(i);
+            data = in.read();
+            while (data != -1) {
+                switch ((char) data) {
+                    case 'L':
+                        currentX--;
+                        break;
+                    case 'R':
+                        currentX++;
+                        break;
+                    case 'D':
+                        currentY--;
+                        break;
+                    case 'U':
+                        currentY++;
+                        break;
+                }
+                data = in.read();
+            }
+            System.out.println(currentX + " " + currentY);
 
-            switch (c) {
-                case 'L':
-                    currentX--;
-                    break;
-                case 'R':
-                    currentX++;
-                    break;
-                case 'D':
-                    currentY--;
-                    break;
-                case 'U':
-                    currentY++;
-                    break;
+        } catch (IOException e) {}
+        finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {}
             }
         }
-
-        System.out.println(currentX + " " + currentY);
     }
 }
