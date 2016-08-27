@@ -1,7 +1,13 @@
 package ItP.UniversityInformationSystem.persons;
 
+import ItP.UniversityInformationSystem.LectureCourse;
+import ItP.UniversityInformationSystem.enums.Gender;
+
 /**
- * Created by vasya on 24.08.2016.
+ * Class for assistants.
  */
 public class Assistant {
+    String firstName, secondName;
+    Gender gender;
+    LectureCourse listOfLectures;
 }
