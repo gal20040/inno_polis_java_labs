@@ -1,9 +1,6 @@
 package codetest.edu.innopolis.ru.ControlSequence;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 /**
  * Statement:
@@ -22,12 +19,13 @@ import java.io.InputStream;
  */
 public class Solution {
     public static void main(String[] args) {
-        String fileName = "input.txt";
         int currentX = 0, currentY = 0;
 
         InputStream in = null;
+        FileWriter out = null;
         try {
-            in = new BufferedInputStream(new FileInputStream(fileName));
+            String inputFileName = "input.txt";
+            in = new BufferedInputStream(new FileInputStream(inputFileName));
             int data;
 
             data = in.read();
@@ -50,11 +48,20 @@ public class Solution {
             }
             System.out.println(currentX + " " + currentY);
 
+            String outputFileName = "output.txt";
+            out = new FileWriter(outputFileName);
+            out.write(currentX + " " + currentY);
         } catch (IOException e) {}
         finally {
             if (in != null) {
                 try {
                     in.close();
+                } catch (IOException e) {}
+            }
+
+            if (out != null) {
+                try {
+                    out.close();
                 } catch (IOException e) {}
             }
         }
