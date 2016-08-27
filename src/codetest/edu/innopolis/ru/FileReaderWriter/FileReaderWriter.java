@@ -4,12 +4,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class FileReaderWriter {
-    public static void main(String[] args) {
-
-    }
+    public FileReaderWriter() {}
 
     public ArrayList<Integer> readFromInputFile() {
-        ArrayList<Integer> array = new ArrayList<Integer>();
+        ArrayList<Integer> inputArray = new ArrayList<Integer>();
 
         InputStream in = null;
         try {
@@ -19,7 +17,7 @@ public class FileReaderWriter {
 
             data = in.read();
             while (data != -1) {
-                array.add(data);
+                inputArray.add(data);
                 data = in.read();
             }
         } catch (IOException e) {}
@@ -31,15 +29,15 @@ public class FileReaderWriter {
             }
         }
 
-        return array;
+        return inputArray;
     }
 
-    public void writeToOutputFile(String string) {
+    public void writeToOutputFile(String outputString) {
         FileWriter out = null;
         try {
             String outputFileName = "output.txt";
             out = new FileWriter(outputFileName);
-            out.write(string);
+            out.write(outputString);
         } catch (IOException e) {}
         finally {
             if (out != null) {
