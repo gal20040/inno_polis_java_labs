@@ -1,4 +1,4 @@
-package codetest.edu.innopolis.ru.ControlSequence;
+//package codetest.edu.innopolis.ru.ControlSequence;
 
 import java.io.*;
 
@@ -17,7 +17,7 @@ import java.io.*;
  output.txt
  -3 2
  */
-public class Solution {
+public class ControlSequence {
     public static void main(String[] args) {
         int currentX = 0, currentY = 0;
 
