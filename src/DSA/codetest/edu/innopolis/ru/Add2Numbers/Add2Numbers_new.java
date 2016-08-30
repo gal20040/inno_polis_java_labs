@@ -1,4 +1,4 @@
-//package codetest.edu.innopolis.ru.Add2Numbers;
+//package DSA.ru.Add2Numbers;
 
 import java.io.*;
 import java.util.ArrayList;

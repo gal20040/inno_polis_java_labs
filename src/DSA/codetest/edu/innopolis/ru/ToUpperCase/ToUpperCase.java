@@ -1,4 +1,4 @@
-//package codetest.edu.innopolis.ru.ToUpperCase;
+//package DSA.ru.ToUpperCase;
 
 import java.io.*;
 import java.util.ArrayList;

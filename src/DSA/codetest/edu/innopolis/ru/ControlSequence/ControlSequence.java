@@ -1,4 +1,4 @@
-//package codetest.edu.innopolis.ru.ControlSequence;
+//package DSA.ru.ControlSequence;
 
 import java.io.*;
 

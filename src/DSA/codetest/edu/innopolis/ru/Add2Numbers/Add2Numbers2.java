@@ -1,4 +1,4 @@
-////package codetest.edu.innopolis.ru.Add2Numbers;
+////package DSA.ru.Add2Numbers;
 //
 //import java.io.*;
 //
@@ -14,7 +14,7 @@
 //25
 // */
 //
-//public class Add2Numbers {
+//public class Add2Numbers2 {
 //    public static void main(String[] args) {
 //        int tempInt = -999999999; /*it's for case if one of the number equals zero. The best solution: tempInt must be equal the minimum integer number, but I'm lazy now to find out it.*/
 //        int[] array = {tempInt, tempInt};
@@ -37,7 +37,16 @@
 //                } else if (data == 45) { //minus
 //                    sign = -1; //negative number
 //                } else {
-//                    array[i] = sign * (Math.abs(array[i] * 10) + Integer.parseInt("+" + (char) data));
+//                    char c = (char) data;
+//                    String s = "" + c;
+//                    if (sign == 1) {
+//                        s = "+" + c;
+//                    }
+//                    Integer v = Integer.parseInt(s);
+//                    int ai = array[i] * 10;
+//                    ai = Math.abs(ai);
+//                    ai = ai + v;
+//                    array[i] = sign * ai;
 //                }
 //                data = in.read();
 //            }
