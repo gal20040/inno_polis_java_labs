@@ -10,7 +10,7 @@ import ItP.UniversityInformationSystem.persons.Student;
 
 import java.util.ArrayList;
 
-public class Solution {
+public class University {
     private static ArrayList<LectureCourse> listOfLectureCourse = new ArrayList<>();
     private static ArrayList<Student> listOfStudents = new ArrayList<>();
     private static ArrayList<Instructor> listOfInstructors = new ArrayList<>();
@@ -202,22 +202,46 @@ public class Solution {
 
     private static void addLectureCourses() {
         LectureCourse tempLectureCourse;
+
         tempLectureCourse = new LectureCourse("Computer Architecture", ProgramAndYear.BS1, CoreElective.Core);
         listOfLectureCourse.add(tempLectureCourse);
         lectureSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.Monday));
-        listOfLectureCourse.add(new LectureCourse("Discrete Math/Logic", ProgramAndYear.BS1, CoreElective.Core));
-        //TODO переделать остальные лекции
-        listOfLectureCourse.add(new LectureCourse("Computer Architecture", ProgramAndYear.BS2, CoreElective.Core));
 
-        listOfLectureCourse.add(new LectureCourse("Data Modelling and Databases", ProgramAndYear.BS3, CoreElective.Core));
-        listOfLectureCourse.add(new LectureCourse("Data Structures and Algorithms", ProgramAndYear.BS3, CoreElective.Core));
-        listOfLectureCourse.add(new LectureCourse("Introduction to Programming", ProgramAndYear.BS3, CoreElective.Core));
+        tempLectureCourse = new LectureCourse("Discrete Math/Logic", ProgramAndYear.BS1, CoreElective.Core);
+        listOfLectureCourse.add(tempLectureCourse);
+        lectureSchedule.add(new Lecture(tempLectureCourse, 110, DayOfWeek.Tuesday));
 
-        listOfLectureCourse.add(new LectureCourse("Data Structures and Algorithms", ProgramAndYear.MS1, CoreElective.Core));
-        listOfLectureCourse.add(new LectureCourse("Data Modelling and Databases", ProgramAndYear.MS1, CoreElective.Core));
+        tempLectureCourse = new LectureCourse("Computer Architecture", ProgramAndYear.BS2, CoreElective.Core);
+        listOfLectureCourse.add(tempLectureCourse);
+        lectureSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.Thursday));
 
-        listOfLectureCourse.add(new LectureCourse("Managing Software Development", ProgramAndYear.MSIT_SE, CoreElective.Core));
-        listOfLectureCourse.add(new LectureCourse("Industrial Robotics", ProgramAndYear.MS_R, CoreElective.Core));
+        tempLectureCourse = new LectureCourse("Data Modelling and Databases", ProgramAndYear.BS3, CoreElective.Core);
+        listOfLectureCourse.add(tempLectureCourse);
+        lectureSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.Friday));
+
+        tempLectureCourse = new LectureCourse("Data Structures and Algorithms", ProgramAndYear.BS3, CoreElective.Core);
+        listOfLectureCourse.add(tempLectureCourse);
+        lectureSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.Saturday));
+
+        tempLectureCourse = new LectureCourse("Introduction to Programming", ProgramAndYear.BS3, CoreElective.Core);
+        listOfLectureCourse.add(tempLectureCourse);
+        lectureSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.Monday));
+
+        tempLectureCourse = new LectureCourse("Data Structures and Algorithms", ProgramAndYear.MS1, CoreElective.Core);
+        listOfLectureCourse.add(tempLectureCourse);
+        lectureSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.Friday));
+
+        tempLectureCourse = new LectureCourse("Data Modelling and Databases", ProgramAndYear.MS1, CoreElective.Core);
+        listOfLectureCourse.add(tempLectureCourse);
+        lectureSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.Wednesday));
+
+        tempLectureCourse = new LectureCourse("Managing Software Development", ProgramAndYear.MSIT_SE, CoreElective.Core);
+        listOfLectureCourse.add(tempLectureCourse);
+        lectureSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.Tuesday));
+
+        tempLectureCourse = new LectureCourse("Industrial Robotics", ProgramAndYear.MS_R, CoreElective.Core);
+        listOfLectureCourse.add(tempLectureCourse);
+        lectureSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.Friday));
     }
 
     private static void printAllInfoAboutCourses() {

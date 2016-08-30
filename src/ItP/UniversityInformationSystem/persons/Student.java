@@ -1,5 +1,6 @@
 package ItP.UniversityInformationSystem.persons;
 
+
 import ItP.UniversityInformationSystem.LectureCourse;
 import ItP.UniversityInformationSystem.enums.Gender;
 import ItP.UniversityInformationSystem.enums.Grade;

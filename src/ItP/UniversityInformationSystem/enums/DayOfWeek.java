@@ -1,5 +1,6 @@
 package ItP.UniversityInformationSystem.enums;
 
+
 /**
  * List of names of days in week.
  */

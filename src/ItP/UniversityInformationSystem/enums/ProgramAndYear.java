@@ -1,5 +1,6 @@
 package ItP.UniversityInformationSystem.enums;
 
+
 /**
  * List of programs with year of education.
  */

@@ -1,5 +1,6 @@
 package ItP.UniversityInformationSystem.enums;
 
+
 /**
  * List of genders.
  */

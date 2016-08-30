@@ -1,5 +1,6 @@
 package ItP.UniversityInformationSystem;
 
+
 import ItP.UniversityInformationSystem.enums.DayOfWeek;
 
 class Lecture {
