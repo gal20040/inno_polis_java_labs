@@ -1,4 +1,4 @@
-package hw2;
+package InnoBootCamp2016.homework2;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class hwLibrary {
 		String stringRead = "read";
 		String stringHolds = "holds";
 		String templateLineBreak = "\n";
-		
+
 		String templateReaderHasRead = "Reader %s has read %s book(s) and holds %s book(s):";
 		String templateBookCommon = "(%s) %s - %s - ";
 		String templateBookWithPages = templateBookCommon + "number of pages: %s";
@@ -22,14 +22,14 @@ public class hwLibrary {
 		String templateTotalOverdueFine = "Total overdue fine: %s$";
 
 		int numberOfDays = 0;
-		
-		ArrayList<Reader> listReader = new ArrayList<Reader>();
-		ArrayList<Book> listBook = new ArrayList<Book>();
-		ArrayList<Book> listOfHoldingBook = new ArrayList<Book>(); //ÒÔËÒÓÍ ‚ÁˇÚ˚ı ÍÌË„ Û Í‡Ê‰Ó„Ó ˜ËÚ‡ÚÂÎˇ
+
+		ArrayList<Reader> listReader = new ArrayList<>();
+		ArrayList<Book> listBook = new ArrayList<>();
+		ArrayList<Book> listOfHoldingBook = new ArrayList<>(); //—Å–ø–∏—Å–æ–∫ –≤–∑¬§—Ç—ã—Ö –∫–Ω–∏–≥ —É –∫–∞–∂–¥–æ–≥–æ —á–∏—Ç–∞—Ç–µ–ª¬§
 		Scanner scanner = new Scanner(System.in);
 
 		listBook.add(new Book("White Fang", "Jack London", 1906, 200, 3));
-		listBook.add(new Book("Gulliverís Travels", "Jonathan Swift", 1726, 100, 5));
+		listBook.add(new Book("Gulliver–¢s Travels", "Jonathan Swift", 1726, 100, 5));
 		listBook.add(new Book("The Door", "Magda Szabo", 1987, 250, 6));
 		listBook.add(new Book("Robinson Crusoe", "Daniel Defoe", 1719, 160, 4));
 		listBook.add(new Book("Candide", "Voltaire", 1759, 100, 2));
@@ -38,7 +38,7 @@ public class hwLibrary {
 		listBook.add(new Book("My Family and Other Animals", "Gerald Malcolm Durrell", 1956, 220, 3));
 		listBook.add(new Book("White Bim Black Ear", "Gavriil Troyepolsky", 1971, 180, 4));
 		listBook.add(new Book("Kashtanka", "Anton Chekhov", 1887, 290, 6));
-		
+
 		//distribution books between readers:
 		listOfHoldingBook.add(listBook.get(0));
 		listOfHoldingBook.add(listBook.get(1));
@@ -46,32 +46,32 @@ public class hwLibrary {
 		listOfHoldingBook.add(listBook.get(3));
 		listReader.add(new Reader("Ann", 110, listOfHoldingBook));
 
-		listOfHoldingBook = new ArrayList<Book>();
+		listOfHoldingBook = new ArrayList<>();
 		listOfHoldingBook.add(listBook.get(4));
 		listOfHoldingBook.add(listBook.get(5));
 		listOfHoldingBook.add(listBook.get(6));
 		listReader.add(new Reader("Mike", 120, listOfHoldingBook));
 
-		listOfHoldingBook = new ArrayList<Book>();
+		listOfHoldingBook = new ArrayList<>();
 		listOfHoldingBook.add(listBook.get(7));
 		listOfHoldingBook.add(listBook.get(8));
 		listOfHoldingBook.add(listBook.get(9));
 		listReader.add(new Reader("Alex", 80, listOfHoldingBook));
-		
-		
+
+
 		System.out.println(helloMessage);
 		System.out.print(queryNumberOfDays);
 		if (scanner.hasNextInt())
 			numberOfDays = scanner.nextInt();
 		scanner.close();
-		
+
 		for (Reader reader : listReader) {
 			System.out.println();
 			int restNumberOfPages = reader.readingSpeed * numberOfDays;
 			int quantityOfReadBooks = 0;
 			int quantityOfHoldBooks = 0;
 			int totalOverdueFine = 0;
-			
+
 			String stringReaderHasRead;
 			String stringBooksAndResults = "";
 
@@ -85,7 +85,7 @@ public class hwLibrary {
 				} else {
 					totalOverdueFine = totalOverdueFine + book.overdueFine;
 					quantityOfHoldBooks++;
-					
+
 					stringBooksAndResults = stringBooksAndResults + templateLineBreak
 							+ String.format(templateBookWithOverdue, stringHolds, book.title, book.author, book.overdueFine);
 				}
@@ -96,27 +96,27 @@ public class hwLibrary {
 					+ templateLineBreak + String.format(templateTotalOverdueFine, totalOverdueFine));
 		}
 	}
-	
-	public static class Reader {
+
+	private static class Reader {
 		String name;
 		int readingSpeed;
 		ArrayList<Book> listOfHoldingBook;
-		
-		public Reader(String name, int readingSpeed, ArrayList<Book> listOfHoldingBook) {
+
+		Reader(String name, int readingSpeed, ArrayList<Book> listOfHoldingBook) {
 			this.name = name;
 			this.readingSpeed = readingSpeed;
 			this.listOfHoldingBook = listOfHoldingBook;
 		}
 	}
-	
-	public static class Book {
+
+	private static class Book {
 		String title;
 		String author;
 		int year;
 		int numberPages;
 		int overdueFine;
-		
-		public Book(String title, String author, int year, int numberPages, int overdueFine) {
+
+		Book(String title, String author, int year, int numberPages, int overdueFine) {
 			this.title = title;
 			this.author = author;
 			this.year = year;

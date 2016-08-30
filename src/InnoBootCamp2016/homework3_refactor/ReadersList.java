@@ -1,9 +1,9 @@
-package homework3_refactor;
+package InnoBootCamp2016.homework3_refactor;
 
-public class ReadersList {
+class ReadersList {
 
-	Reader first = new Reader();
-	int count = 0;
+	private Reader first = new Reader();
+	private int count = 0;
 
 	void add(String aName, int speed) {
 		Reader current;

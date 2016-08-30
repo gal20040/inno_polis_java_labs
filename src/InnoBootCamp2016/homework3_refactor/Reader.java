@@ -1,31 +1,31 @@
-package homework3_refactor;
+package InnoBootCamp2016.homework3_refactor;
 
-public class Reader {
-	String name = new String();
+class Reader {
+	String name;
 	int speedOfReading;
 	Reader next;
 	Reader prev;
 	BookList bookList = new BookList();
 
-	public Reader() {
+	Reader() {
 		next = null;
 		prev = null;
 	}
 
-	public float calculate(int aDays) {
+	float calculate(int aDays) {
 		int sheets = aDays * speedOfReading;
 		boolean indicator = false;
-		int tMP = 0;
+		int tMP;
 		float peni = 0;
-		Book temp = new Book();
+		Book temp;
 		float backCheck = 0;
 		
 		temp = bookList.first;
 		tMP = sheets;
 		while (temp != null) {
-			if (indicator == true) {
+			if (indicator) {
 				peni += (float) (temp.numPages) / speedOfReading * temp.overdueFine;
-				peni += (float) (backCheck) / speedOfReading * temp.overdueFine;
+				peni += backCheck / speedOfReading * temp.overdueFine;
 				backCheck += temp.numPages;
 			} else {
 				tMP = tMP - temp.numPages;

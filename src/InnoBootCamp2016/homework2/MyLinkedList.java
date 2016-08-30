@@ -1,4 +1,4 @@
-package hw2;
+package InnoBootCamp2016.homework2;
 
 /*
  * Realisation of the own LinkedList
@@ -6,12 +6,12 @@ package hw2;
 
 public class MyLinkedList<T> {
 	private int listSize = 0;
-	public Node<T> head;
-	public Node<T> tail;
+	private Node<T> head;
+	private Node<T> tail;
 	private static int elementsQuantityForTest = 5;
 
 	public static void main (String args[]) {
-		MyLinkedList<Integer> MyLinkedList = new MyLinkedList<Integer>();
+		MyLinkedList<Integer> MyLinkedList = new MyLinkedList<>();
 		
 		//filling List
 		for (int i = 0; i < elementsQuantityForTest; i++) {
@@ -34,14 +34,14 @@ public class MyLinkedList<T> {
 		}
 	}
 
-	public MyLinkedList() {}
+	private MyLinkedList() {}
 	
 	/*
 	 * Adding new element to the List tail.
 	 */
 	public void add(T t) {
         final Node<T> oldTailNode = tail;
-        tail = new Node<T>();
+        tail = new Node<>();
         tail.prev = oldTailNode;
         tail.value = t;
         if (oldTailNode == null)
@@ -54,7 +54,7 @@ public class MyLinkedList<T> {
 	/*
 	 * Getting element with certain index.
 	 */
-	public T get(int index) {
+	private T get(int index) {
 		checkListForIndexPresence(index);
     	return findNode(index).value;
 	}
@@ -62,7 +62,7 @@ public class MyLinkedList<T> {
 	/*
 	 * Removing element with certain index.
 	 */
-	public void remove(int index) {
+	private void remove(int index) {
 		checkListForIndexPresence(index);
 
 		Node<T> currentNode = findNode(index);
@@ -90,7 +90,7 @@ public class MyLinkedList<T> {
 	/*
 	 * Checking for the presence in the List the element with certain index.
 	 */
-	public void checkListForIndexPresence(int index) {
+	private void checkListForIndexPresence(int index) {
 		if ((index >= listSize) || (index < 0))
     		throw new IndexOutOfBoundsException();
 	}
@@ -98,7 +98,7 @@ public class MyLinkedList<T> {
 	/*
 	 * Looking for the element with certain index.
 	 */
-	Node<T> findNode(int index) {
+	private Node<T> findNode(int index) {
 		Node<T> currentNode = head;
 		int counter = 0; //elements counter
 		boolean needRepeat = true;

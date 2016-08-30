@@ -1,4 +1,4 @@
-package homework5.shuntingyard;
+package InnoBootCamp2016.homework5.shuntingyard;
 
 import java.util.Arrays;
 
@@ -8,7 +8,7 @@ public class Lifo<T> {
 	private int rateForExpansion = 2; // Ratio for extending array
 	
 	public static void main(String[] args) {
-		Lifo<Object> queue = new Lifo<Object>();
+		Lifo<Object> queue = new Lifo<>();
 
 		for (int i = 1; i < 11; i++) {
 			queue.add(i);
@@ -26,7 +26,7 @@ public class Lifo<T> {
 	 */
 	private int firstEmptyElement = 0;
 
-	public Lifo() {
+	Lifo() {
 		array = (T[]) new Object[initialSize];
 	}
 
@@ -50,7 +50,7 @@ public class Lifo<T> {
 	/*
 	 * Getting element with certain index.
 	 */
-	public T get(int index) {
+	T get(int index) {
 		checkListForIndexPresence(index);
 		return array[index];
 	}
@@ -58,7 +58,7 @@ public class Lifo<T> {
 	/*
 	 * Removing element with certain index.
 	 */
-	public void remove(int index) {
+	void remove(int index) {
 		checkListForIndexPresence(index);
 
 		for (int i = index; i < array.length; i++) {
@@ -78,13 +78,13 @@ public class Lifo<T> {
 	/*
 	 * Checking for the presence in the List the element with certain index.
 	 */
-	public void checkListForIndexPresence(int index) {
+	private void checkListForIndexPresence(int index) {
 //		System.out.println(index);
 		if ((index >= array.length) || (index < 0))
 			throw new IndexOutOfBoundsException();
 	}
 
-	public void show() {
+	private void show() {
 		for (int i = 0; i < array.length; i++) {
 			System.out.println(array[i]);
 		}
@@ -100,7 +100,7 @@ public class Lifo<T> {
 	/*
 	 * Returns quantity of the elements in the array Look also method getSize()
 	 */
-	public int getElementsNumber() {
+	int getElementsNumber() {
 		return firstEmptyElement;
 	}
 }

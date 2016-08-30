@@ -1,8 +1,6 @@
-package hw2;
+package InnoBootCamp2016.homework2;
 
-//import practice2.MyLinkedList.Node;
-
-public class Node<T> {
+class Node<T> {
 	Node<T> prev;
 	T value;
 	Node<T> next;

@@ -1,9 +1,9 @@
-package homework5.shuntingyard;
+package InnoBootCamp2016.homework5.shuntingyard;
 
 import java.util.Scanner;
 
 public class ShuntingYardAlgorithm {
-	private static Lifo<Object> queue = new Lifo<Object>();
+	private static Lifo<Object> queue = new Lifo<>();
 	private static String stringOut = "";
 
 	public static void main(String[] args) {
@@ -11,14 +11,14 @@ public class ShuntingYardAlgorithm {
 
 		System.out.println("Enter string:");
 		String stringIn;
-		
+
 //		stringIn = "A * B + C"; //A B * C +
 //		stringIn = "A + B * C"; //A B C * +   !!!!
 //		stringIn = "A * (B + C)"; //A B C + * !!!!
 //		stringIn = "A - B + C"; //A B - C +
 //		stringIn = "A * B ^ C + D"; //A B C ^ * D +
 //		stringIn = "A * (B + C * D) + E"; //A B C D * + * E +
-		
+
 		stringIn = scanner.nextLine();
 
 		parseString(stringIn);
@@ -32,7 +32,7 @@ public class ShuntingYardAlgorithm {
 			char sign = stringIn.charAt(i);
 
 			if (sign == ' ') {
-				
+
 			} else if (isNumeric(sign + "") || (sign >= 'a' && sign <= 'z') || (sign >= 'A' && sign <= 'Z')) {
 				// 1. If the incoming symbols is an operand, print it.
 				// if it's a number or a sign
@@ -49,7 +49,7 @@ public class ShuntingYardAlgorithm {
 				 * see a left parenthesis. Pop the left parenthesis and discard
 				 * it.
 				 */
-				
+
 				char signForChecking = sign;
 
 				while (signForChecking != '(') {
@@ -64,7 +64,7 @@ public class ShuntingYardAlgorithm {
 			else if ((sign == '+' || sign == '-' || sign == '*' || sign == '/' || sign == '^')) {
 				/* If the incoming symbol is an operator... */
 
-				char topElement = '$'; //ïóñòûøêà
+				char topElement = '$'; //Ð¿ÑƒÑÑ‚Ñ‹ÑˆÐºÐ°
 				if (queue.getElementsNumber() > 0) {
 					topElement = (char) queue.get(queue.getElementsNumber() - 1);
 				}
@@ -100,20 +100,20 @@ public class ShuntingYardAlgorithm {
 					 * or has the same precedence as the operator on the top of the stack and is left associative
 					 * 
 					 * -- continue to pop the stack until this is not true. Then, push the incoming operator.*/
-					
+
 					boolean needRepeat = true;
 
 					while (needRepeat
 							&& (precedenceOfCurrentElement < precedenceOfTopElement
-									|| (precedenceOfCurrentElement == precedenceOfTopElement && sign != '^')
-							   )
-						  ) {
+							|| (precedenceOfCurrentElement == precedenceOfTopElement && sign != '^')
+					)
+							) {
 						char tempChar = (char) queue.get(queue.getElementsNumber() - 1);
 						queue.remove(queue.getElementsNumber() - 1);
 						if (tempChar != '(' && tempChar != ')') {
 							stringOut = stringOut + tempChar + " ";
 						}
-						
+
 						if (queue.getElementsNumber() > 0) {
 							topElement = (char) queue.get(queue.getElementsNumber() - 1);
 
@@ -124,12 +124,12 @@ public class ShuntingYardAlgorithm {
 							needRepeat = false;
 						}
 					}
-					
+
 					queue.add(sign);
 				}
 			}
 		}
-		
+
 		for (int j = queue.getElementsNumber() - 1; j >= 0; j--) {
 			/*
 			 * 7. At the end of the
@@ -143,31 +143,31 @@ public class ShuntingYardAlgorithm {
 		}
 	}
 
-	public static int getPrecedenceOfSign(char c) {
+	private static int getPrecedenceOfSign(char c) {
 		int precedenceOfTopElement = 0;
 		switch (c) {
-		case '^':
-			precedenceOfTopElement = 3;
-			break;
-		case '*':
-			precedenceOfTopElement = 2;
-			break;
-		case '/':
-			precedenceOfTopElement = 2;
-			break;
-		case '+':
-			precedenceOfTopElement = 1;
-			break;
-		case '-':
-			precedenceOfTopElement = 1;
-			break;
+			case '^':
+				precedenceOfTopElement = 3;
+				break;
+			case '*':
+				precedenceOfTopElement = 2;
+				break;
+			case '/':
+				precedenceOfTopElement = 2;
+				break;
+			case '+':
+				precedenceOfTopElement = 1;
+				break;
+			case '-':
+				precedenceOfTopElement = 1;
+				break;
 		}
 
 		return precedenceOfTopElement;
 	}
 
-	public static boolean isNumeric(String str) {
+	private static boolean isNumeric(String str) {
 		return str.matches("-?\\d+(\\.\\d+)?"); // match a number with optional
-												// '-' and decimal.
+		// '-' and decimal.
 	}
 }

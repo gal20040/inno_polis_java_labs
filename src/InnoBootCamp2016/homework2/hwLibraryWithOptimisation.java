@@ -1,4 +1,4 @@
-package hw2;
+package InnoBootCamp2016.homework2;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,7 +6,7 @@ import java.util.Scanner;
 /*
  * It is solution WITH strategy for reader to minimize the debt.
  * My optimal strategy is to read first of all books with the highest attitude overdue fine to number of pages.
- * 
+ *
  * What else can be done (but i have no time now...pity): if the reader has some book with a very large number of pages, than its need new check:
  * whether the reader can read this book at all in available time? It may be that the reader will read 0 books.
  * That kind of books needs to be filtrated.
@@ -19,7 +19,7 @@ public class hwLibraryWithOptimisation {
 		String stringRead = "read";
 		String stringHolds = "holds";
 		String templateLineBreak = "\n";
-		
+
 		String templateReaderHasRead = "Reader %s has read %s book(s) and holds %s book(s):";
 		String templateBookCommon = "(%s) %s - %s - ";
 		String templateBookWithPages = templateBookCommon + "number of pages: %s";
@@ -27,12 +27,12 @@ public class hwLibraryWithOptimisation {
 		String templateTotalOverdueFine = "Total overdue fine: %s$";
 
 		int numberOfDays = 0;
-		
-		ArrayList<Reader> listReader = new ArrayList<Reader>();
-		ArrayList<Book> listBook = new ArrayList<Book>();
-		ArrayList<Book> listOfHoldingBook = new ArrayList<Book>(); //список взятых книг у каждого читателя
+
+		ArrayList<Reader> listReader = new ArrayList<>();
+		ArrayList<Book> listBook = new ArrayList<>();
+		ArrayList<Book> listOfHoldingBook = new ArrayList<>(); //СЃРїРёСЃРѕРє РІР·СЏС‚С‹С… РєРЅРёРі Сѓ РєР°Р¶РґРѕРіРѕ С‡РёС‚Р°С‚РµР»СЏ
 		Scanner scanner = new Scanner(System.in);
-		
+
 		System.out.println(helloMessage);
 		System.out.print(queryNumberOfDays);
 		if (scanner.hasNextInt())
@@ -40,7 +40,7 @@ public class hwLibraryWithOptimisation {
 		scanner.close();
 
 		listBook.add(new Book("White Fang", "Jack London", 1906, 200, 3));
-		listBook.add(new Book("Gulliver’s Travels", "Jonathan Swift", 1726, 100, 5));
+		listBook.add(new Book("GulliverвЂ™s Travels", "Jonathan Swift", 1726, 100, 5));
 		listBook.add(new Book("The Door", "Magda Szabo", 1987, 250, 6));
 		listBook.add(new Book("Robinson Crusoe", "Daniel Defoe", 1719, 160, 4));
 		listBook.add(new Book("Candide", "Voltaire", 1759, 100, 2));
@@ -49,7 +49,7 @@ public class hwLibraryWithOptimisation {
 		listBook.add(new Book("My Family and Other Animals", "Gerald Malcolm Durrell", 1956, 220, 3));
 		listBook.add(new Book("White Bim Black Ear", "Gavriil Troyepolsky", 1971, 180, 4));
 		listBook.add(new Book("Kashtanka", "Anton Chekhov", 1887, 290, 6));
-		
+
 		//distribution books between readers:
 		listOfHoldingBook.add(listBook.get(0));
 		listOfHoldingBook.add(listBook.get(1));
@@ -58,21 +58,21 @@ public class hwLibraryWithOptimisation {
 		rearrangeBooks(listOfHoldingBook);
 		listReader.add(new Reader("Ann", 110, listOfHoldingBook));
 
-		listOfHoldingBook = new ArrayList<Book>();
+		listOfHoldingBook = new ArrayList<>();
 		listOfHoldingBook.add(listBook.get(4));
 		listOfHoldingBook.add(listBook.get(5));
 		listOfHoldingBook.add(listBook.get(6));
 		rearrangeBooks(listOfHoldingBook);
 		listReader.add(new Reader("Mike", 120, listOfHoldingBook));
 
-		listOfHoldingBook = new ArrayList<Book>();
+		listOfHoldingBook = new ArrayList<>();
 		listOfHoldingBook.add(listBook.get(7));
 		listOfHoldingBook.add(listBook.get(8));
 		listOfHoldingBook.add(listBook.get(9));
 		rearrangeBooks(listOfHoldingBook);
 		listReader.add(new Reader("Alex", 80, listOfHoldingBook));
 
-		//пробежимся по всем читателям, для проверки прочитанных книг
+		//РїСЂРѕР±РµР¶РёРјСЃСЏ РїРѕ РІСЃРµРј С‡РёС‚Р°С‚РµР»СЏРј, РґР»СЏ РїСЂРѕРІРµСЂРєРё РїСЂРѕС‡РёС‚Р°РЅРЅС‹С… РєРЅРёРі
 		for (Reader reader : listReader) {
 			System.out.println();
 			int restNumberOfPages = reader.readingSpeed * numberOfDays;
@@ -83,22 +83,22 @@ public class hwLibraryWithOptimisation {
 			String stringReaderHasRead;
 			String stringBooksAndResults = "";
 
-			//пробежимся по всем книгам отдельно взятого читателя
+			//РїСЂРѕР±РµР¶РёРјСЃСЏ РїРѕ РІСЃРµРј РєРЅРёРіР°Рј РѕС‚РґРµР»СЊРЅРѕ РІР·СЏС‚РѕРіРѕ С‡РёС‚Р°С‚РµР»СЏ
 			for (Book book : reader.listOfHoldingBook) {
-				restNumberOfPages = restNumberOfPages - book.numberPages; //остаток страниц у данного читателя
+				restNumberOfPages = restNumberOfPages - book.numberPages; //РѕСЃС‚Р°С‚РѕРє СЃС‚СЂР°РЅРёС† Сѓ РґР°РЅРЅРѕРіРѕ С‡РёС‚Р°С‚РµР»СЏ
 				if (restNumberOfPages >= 0) {
-					//читатель не выбился за отведённое ему время, значит данную книгу он всё-таки прочёл
+					//С‡РёС‚Р°С‚РµР»СЊ РЅРµ РІС‹Р±РёР»СЃСЏ Р·Р° РѕС‚РІРµРґС‘РЅРЅРѕРµ РµРјСѓ РІСЂРµРјСЏ, Р·РЅР°С‡РёС‚ РґР°РЅРЅСѓСЋ РєРЅРёРіСѓ РѕРЅ РІСЃС‘-С‚Р°РєРё РїСЂРѕС‡С‘Р»
 					quantityOfReadBooks++;
 					book.status = true;
 
-					//добавляем инфу по данной книге в список вывода
+					//РґРѕР±Р°РІР»СЏРµРј РёРЅС„Сѓ РїРѕ РґР°РЅРЅРѕР№ РєРЅРёРіРµ РІ СЃРїРёСЃРѕРє РІС‹РІРѕРґР°
 					stringBooksAndResults = stringBooksAndResults + templateLineBreak
 							+ String.format(templateBookWithPages, stringRead, book.title, book.author, book.numberPages);
 				} else {
-					totalOverdueFine = totalOverdueFine + book.overdueFine; //общая сумма штрафа у читателя
+					totalOverdueFine = totalOverdueFine + book.overdueFine; //РѕР±С‰Р°СЏ СЃСѓРјРјР° С€С‚СЂР°С„Р° Сѓ С‡РёС‚Р°С‚РµР»СЏ
 					quantityOfHoldBooks++;
-					
-					//добавляем инфу по данной книге в список вывода
+
+					//РґРѕР±Р°РІР»СЏРµРј РёРЅС„Сѓ РїРѕ РґР°РЅРЅРѕР№ РєРЅРёРіРµ РІ СЃРїРёСЃРѕРє РІС‹РІРѕРґР°
 					stringBooksAndResults = stringBooksAndResults + templateLineBreak
 							+ String.format(templateBookWithOverdue, stringHolds, book.title, book.author, book.overdueFine);
 				}
@@ -112,7 +112,7 @@ public class hwLibraryWithOptimisation {
 	}
 
 	private static void rearrangeBooks(ArrayList<Book> listOfHoldingBook) {
-		//массив на 1 книгу не трогаем
+		//РјР°СЃСЃРёРІ РЅР° 1 РєРЅРёРіСѓ РЅРµ С‚СЂРѕРіР°РµРј
 		if (listOfHoldingBook.size() > 1) {
 			boolean needRepeat = true;
 			while (needRepeat) {
@@ -125,7 +125,7 @@ public class hwLibraryWithOptimisation {
 						listOfHoldingBook.add(i, listOfHoldingBook.get(i));
 						listOfHoldingBook.remove(i + 1);
 						listOfHoldingBook.add(i + 1, tempBook);
-						needRepeat = true; //нужен ещё повтор
+						needRepeat = true; //РЅСѓР¶РµРЅ РµС‰С‘ РїРѕРІС‚РѕСЂ
 					}
 				}
 			}

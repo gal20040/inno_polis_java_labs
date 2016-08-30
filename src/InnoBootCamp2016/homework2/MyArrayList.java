@@ -1,4 +1,4 @@
-package hw2;
+package InnoBootCamp2016.homework2;
 
 /*
  * Realisation of the own ArrayList
@@ -7,15 +7,15 @@ package hw2;
 public class MyArrayList<T> {
 	private T[] array;
 	private final static int initialSize = 5;
-	private int rateForExpansion = 2; //кратность для расширения листа
-	
+	private int rateForExpansion = 2; //РєСЂР°С‚РЅРѕСЃС‚СЊ РґР»СЏ СЂР°СЃС€РёСЂРµРЅРёСЏ Р»РёСЃС‚Р°
+
 	/*
 	 * It's first empty element in array. After that may be we have some elements, but they are empty.
 	 */
 	private int firstEmptyElement = 0;
 
 	public static void main (String args[]) {
-		MyArrayList<Integer> myArrayList = new MyArrayList<Integer>(initialSize);
+		MyArrayList<Integer> myArrayList = new MyArrayList<>(initialSize);
 
 		//filling List
 		for (int i = 0; i < initialSize; i++) {
@@ -27,7 +27,7 @@ public class MyArrayList<T> {
 			System.out.println(myArrayList.get(i));
 		}
 		System.out.println();
-		
+
 		myArrayList.remove(1); //delete some element
 		myArrayList.remove(2);
 		System.out.println("List:");
@@ -36,9 +36,9 @@ public class MyArrayList<T> {
 		}
 	}
 
-	public MyArrayList(int initialSize){
-        array = (T[]) new Object[initialSize];
-    }
+	private MyArrayList(int initialSize){
+		array = (T[]) new Object[initialSize];
+	}
 
 	public void add(T newElement) {
 
@@ -47,26 +47,26 @@ public class MyArrayList<T> {
 			resizeArray();
 		}
 
-        array[firstEmptyElement] = newElement;
-        firstEmptyElement++; //increasing a free element pointer
+		array[firstEmptyElement] = newElement;
+		firstEmptyElement++; //increasing a free element pointer
 	}
-	
+
 	/*TODO: realise additional method
 	public void add(int index, T newElement) {}*/
 
 	/*
 	 * Getting element with certain index.
 	 */
-	public T get (int number) {
-    	checkListForIndexPresence(number);
-    	return array[number];
-    }
+	private T get (int number) {
+		checkListForIndexPresence(number);
+		return array[number];
+	}
 
 	/*
 	 * Removing element with certain index.
 	 */
-    private void remove(int number) {
-    	checkListForIndexPresence(number);
+	private void remove(int number) {
+		checkListForIndexPresence(number);
 
 		for (int i = number; i < array.length; i++) {
 			if (i + 1 == firstEmptyElement) { //reached the last element - complete processing
@@ -81,31 +81,31 @@ public class MyArrayList<T> {
 	/*
 	 * Checking for the presence in the List the element with certain index.
 	 */
-	public void checkListForIndexPresence(int index) {
+	private void checkListForIndexPresence(int index) {
 		if ((index >= array.length) || (index < 0))
-    		throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException();
 	}
 
 	/*
 	 * Extend array.
-	 * //TODO хорошо бы не не только увеличивать, но и уменьшать - надо сделать проверку при удалении элементов, может быть пора уменьшить его
+	 * //TODO С…РѕСЂРѕС€Рѕ Р±С‹ РЅРµ РЅРµ С‚РѕР»СЊРєРѕ СѓРІРµР»РёС‡РёРІР°С‚СЊ, РЅРѕ Рё СѓРјРµРЅСЊС€Р°С‚СЊ - РЅР°РґРѕ СЃРґРµР»Р°С‚СЊ РїСЂРѕРІРµСЂРєСѓ РїСЂРё СѓРґР°Р»РµРЅРёРё СЌР»РµРјРµРЅС‚РѕРІ, РјРѕР¶РµС‚ Р±С‹С‚СЊ РїРѕСЂР° СѓРјРµРЅСЊС€РёС‚СЊ РµРіРѕ
 	 */
 	private void resizeArray() {
-        int newSize = array.length * rateForExpansion;
-        T[] tempArray;
-        tempArray = (T[]) new Object[newSize];
+		int newSize = array.length * rateForExpansion;
+		T[] tempArray;
+//		tempArray = (T[]) new Object[newSize];
 
-        tempArray = array;
+		tempArray = array;
 
-        array = (T[]) new Object[newSize];
-        	
-        for (int i = 0; i < tempArray.length; i++) {
-        	array[i] = tempArray[i];
+		array = (T[]) new Object[newSize];
+
+		for (int i = 0; i < tempArray.length; i++) {
+			array[i] = tempArray[i];
 		}
-    }
-	
+	}
+
 	private int getSize() {return array.length;}
-        
-    //TODO сделать проверку, что при очередном увеличении кол-ва элементов
-    //мы не получим ошибку OutOfMemoryError 
+
+	//TODO СЃРґРµР»Р°С‚СЊ РїСЂРѕРІРµСЂРєСѓ, С‡С‚Рѕ РїСЂРё РѕС‡РµСЂРµРґРЅРѕРј СѓРІРµР»РёС‡РµРЅРёРё РєРѕР»-РІР° СЌР»РµРјРµРЅС‚РѕРІ
+	//РјС‹ РЅРµ РїРѕР»СѓС‡РёРј РѕС€РёР±РєСѓ OutOfMemoryError
 }

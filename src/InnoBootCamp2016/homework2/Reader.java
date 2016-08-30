@@ -1,13 +1,13 @@
-package hw2;
+package InnoBootCamp2016.homework2;
 
 import java.util.ArrayList;
 
-public class Reader {
+class Reader {
 	String name;
 	int readingSpeed;
 	ArrayList<Book> listOfHoldingBook;
 	
-	public Reader(String name, int readingSpeed, ArrayList<Book> listOfHoldingBook) {
+	Reader(String name, int readingSpeed, ArrayList<Book> listOfHoldingBook) {
 		this.name = name;
 		this.readingSpeed = readingSpeed;
 		this.listOfHoldingBook = listOfHoldingBook;

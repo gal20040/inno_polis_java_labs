@@ -1,15 +1,15 @@
-package homework3_refactor;
+package InnoBootCamp2016.homework3_refactor;
 
-public class Book {
-	String title = new String();
-	String author = new String();
+class Book {
+	String title;
+	String author;
 	int numPages;
 	int year;
 	int overdueFine;
 	Book next;
 	Book prev;
 
-	public Book() {
+	Book() {
 		next = null;
 		prev = null;
 	}

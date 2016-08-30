@@ -1,9 +1,9 @@
-package homework3_refactor;
+package InnoBootCamp2016.homework3_refactor;
 
-public class BookList {
+class BookList {
 
 	Book first = new Book();
-	Book last = new Book();
+	private Book last = new Book();
 	int count = 0;
 
 	void add(Book aBook) {
@@ -62,7 +62,7 @@ public class BookList {
 		if (count == 1)
 			return temp;
 		while (temp != null) {
-			if (temp.title == aTitle) 
+			if (temp.title == aTitle) //здесь идёт сравнение строчных переменных, но почему-то через равенство, а не через equals()
 				return temp;				
 
 			temp = temp.next;
