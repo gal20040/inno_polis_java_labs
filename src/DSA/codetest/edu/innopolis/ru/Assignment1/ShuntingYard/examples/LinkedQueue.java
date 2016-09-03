@@ -60,7 +60,7 @@
 //    /**
 //     * Is this queue empty?
 //     * @return true if this queue is empty; false otherwise
-//     *///TODO берём?
+//     */
 //    public boolean isEmpty() {return first == null;}
 //
 //    /**

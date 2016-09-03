@@ -64,7 +64,7 @@
 //     * Is this stack empty?
 //     * @return true if this stack is empty; false otherwise
 //     */
-//    public boolean isEmpty() {return first == null;}//TODO берём?
+//    public boolean isEmpty() {return first == null;}
 //
 //    /**
 //     * Returns the number of items in the stack.
