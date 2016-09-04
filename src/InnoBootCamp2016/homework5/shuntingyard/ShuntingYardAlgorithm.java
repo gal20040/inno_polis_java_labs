@@ -3,14 +3,14 @@
 //import java.util.Scanner;
 //
 //public class ShuntingYardAlgorithm {
-//	private static Lifo<Object> queue = new Lifo<>();
-//	private static String stringOut = "";
+//    private static Lifo<Object> queue = new Lifo<>();
+//    private static String stringOut = "";
 //
-//	public static void main(String[] args) {
-//		Scanner scanner = new Scanner(System.in);
+//    public static void main(String[] args) {
+//        Scanner scanner = new Scanner(System.in);
 //
-//		System.out.println("Enter string:");
-//		String stringIn;
+//        System.out.println("Enter string:");
+//        String stringIn;
 //
 ////		stringIn = "A * B + C"; //A B * C +
 ////		stringIn = "A + B * C"; //A B C * +   !!!!
@@ -18,31 +18,36 @@
 ////		stringIn = "A - B + C"; //A B - C +
 ////		stringIn = "A * B ^ C + D"; //A B C ^ * D +
 ////		stringIn = "A * (B + C * D) + E"; //A B C D * + * E +
+////        stringIn = "(1 + 5)/(7 + 1)"; //1 5 + 7 1 + /
+////        stringIn = "1 + 5 * (7 - 1)";
+////        stringIn = "(7-8)*(4/5)*3+2"; //7 8 - 4 5 / * 3 * 2 +
+////        stringIn = "3+4*(2-1)"; //3 4 2 1 - * +
+////        stringIn = "1+2*3+4"; //1 2 3 * + 4 +
 //
-//		stringIn = scanner.nextLine();
+//        stringIn = scanner.nextLine();
 //
-//		parseString(stringIn);
+//        parseString(stringIn);
 //
-//		System.out.println("result: " + stringOut);
-//		scanner.close();
-//	}
+//        System.out.println("result: " + stringOut);
+//        scanner.close();
+//    }
 //
-//	private static void parseString(String stringIn) {
-//		for (int i = 0; i < stringIn.length(); i++) {
-//			char sign = stringIn.charAt(i);
+//    private static void parseString(String stringIn) {
+//        for (int i = 0; i < stringIn.length(); i++) {
+//            char sign = stringIn.charAt(i);
 //
-//			if (sign == ' ') {
+//            if (sign == ' ') {
 //
-//			} else if (isNumeric(sign + "") || (sign >= 'a' && sign <= 'z') || (sign >= 'A' && sign <= 'Z')) {
-//				// 1. If the incoming symbols is an operand, print it.
-//				// if it's a number or a sign
-//				stringOut = stringOut + sign + " ";
-//			}
-//			else if (sign == '(') {
-//				// 2. If the incoming symbol is a left parenthesis, push it on the stack.
-//				queue.add(sign);
-//			}
-//			else if (sign == ')') {
+//            } else if (isNumeric(sign + "") || (sign >= 'a' && sign <= 'z') || (sign >= 'A' && sign <= 'Z')) {
+//                // 1. If the incoming symbols is an operand, print it.
+//                // if it's a number or a sign
+//                stringOut = stringOut + sign + " ";
+//            }
+//            else if (sign == '(') {
+//                // 2. If the incoming symbol is a left parenthesis, push it on the stack.
+//                queue.add(sign);
+//            }
+//            else if (sign == ')') {
 //				/*
 //				 * 3. If the incoming symbol is a right parenthesis: discard the
 //				 * right parenthesis, pop and print the stack symbols until you
@@ -50,40 +55,40 @@
 //				 * it.
 //				 */
 //
-//				char signForChecking = sign;
+//                char signForChecking = sign;
 //
-//				while (signForChecking != '(') {
-//					char tempChar = (char) queue.get(queue.getElementsNumber() - 1);
-//					queue.remove(queue.getElementsNumber() - 1);
-//					signForChecking = tempChar;
-//					if (tempChar != '(' && tempChar != ')') {
-//						stringOut = stringOut + tempChar + " ";
-//					}
-//				}
-//			}
-//			else if ((sign == '+' || sign == '-' || sign == '*' || sign == '/' || sign == '^')) {
+//                while (signForChecking != '(') {
+//                    char tempChar = (char) queue.get(queue.getElementsNumber() - 1);
+//                    queue.remove(queue.getElementsNumber() - 1);
+//                    signForChecking = tempChar;
+//                    if (tempChar != '(' && tempChar != ')') {
+//                        stringOut = stringOut + tempChar + " ";
+//                    }
+//                }
+//            }
+//            else if ((sign == '+' || sign == '-' || sign == '*' || sign == '/' || sign == '^')) {
 //				/* If the incoming symbol is an operator... */
 //
-//				char topElement = '$'; //пустышка
-//				if (queue.getElementsNumber() > 0) {
-//					topElement = (char) queue.get(queue.getElementsNumber() - 1);
-//				}
+//                char topElement = '$'; //пустышка
+//                if (queue.getElementsNumber() > 0) {
+//                    topElement = (char) queue.get(queue.getElementsNumber() - 1);
+//                }
 //
-//				// determine precedences
-//				int precedenceOfTopElement = getPrecedenceOfSign(topElement);
-//				int precedenceOfCurrentElement = getPrecedenceOfSign(sign);
+//                // determine precedences
+//                int precedenceOfTopElement = getPrecedenceOfSign(topElement);
+//                int precedenceOfCurrentElement = getPrecedenceOfSign(sign);
 //
-//				if (queue.getElementsNumber() == 0
-//						|| topElement == '(') {
+//                if (queue.getElementsNumber() == 0
+//                        || topElement == '(') {
 //					/*
 //					 * ... and the stack is empty, push the incoming operator onto the stack.
 //					 * ... or contains a left parenthesis on top, push the incoming operator onto the stack.
 //					 */
-//					queue.add(sign);
-//				}
-//				else if (precedenceOfCurrentElement > precedenceOfTopElement
-//						|| (precedenceOfCurrentElement == precedenceOfTopElement && sign == '^')
-//						) {
+//                    queue.add(sign);
+//                }
+//                else if (precedenceOfCurrentElement > precedenceOfTopElement
+//                        || (precedenceOfCurrentElement == precedenceOfTopElement && sign == '^')
+//                        ) {
 //					/*
 //					 * ... and has either higher precedence than the operator on the top of the stack,
 //					 * or has the same precedence as the operator on the top of the stack
@@ -91,83 +96,83 @@
 //					 *
 //					 * than push the incoming operator onto the stack.
 //					 */
-//					queue.add(sign);
+//                    queue.add(sign);
 //
-//				}
-//				else if (precedenceOfCurrentElement < precedenceOfTopElement
-//						|| (precedenceOfCurrentElement == precedenceOfTopElement && sign != '^')) {
+//                }
+//                else if (precedenceOfCurrentElement < precedenceOfTopElement
+//                        || (precedenceOfCurrentElement == precedenceOfTopElement && sign != '^')) {
 //					/* ... and has either lower precedence than the operator on the top of the stack,
 //					 * or has the same precedence as the operator on the top of the stack and is left associative
 //					 *
 //					 * -- continue to pop the stack until this is not true. Then, push the incoming operator.*/
 //
-//					boolean needRepeat = true;
+//                    boolean needRepeat = true;
 //
-//					while (needRepeat
-//							&& (precedenceOfCurrentElement < precedenceOfTopElement
-//							|| (precedenceOfCurrentElement == precedenceOfTopElement && sign != '^')
-//					)
-//							) {
-//						char tempChar = (char) queue.get(queue.getElementsNumber() - 1);
-//						queue.remove(queue.getElementsNumber() - 1);
-//						if (tempChar != '(' && tempChar != ')') {
-//							stringOut = stringOut + tempChar + " ";
-//						}
+//                    while (needRepeat
+//                            && (precedenceOfCurrentElement < precedenceOfTopElement
+//                            || (precedenceOfCurrentElement == precedenceOfTopElement && sign != '^')
+//                    )
+//                            ) {
+//                        char tempChar = (char) queue.get(queue.getElementsNumber() - 1);
+//                        queue.remove(queue.getElementsNumber() - 1);
+//                        if (tempChar != '(' && tempChar != ')') {
+//                            stringOut = stringOut + tempChar + " ";
+//                        }
 //
-//						if (queue.getElementsNumber() > 0) {
-//							topElement = (char) queue.get(queue.getElementsNumber() - 1);
+//                        if (queue.getElementsNumber() > 0) {
+//                            topElement = (char) queue.get(queue.getElementsNumber() - 1);
 //
-//							// determine precedences
-//							precedenceOfTopElement = getPrecedenceOfSign(topElement);
-//							precedenceOfCurrentElement = getPrecedenceOfSign(sign);
-//						} else {
-//							needRepeat = false;
-//						}
-//					}
+//                            // determine precedences
+//                            precedenceOfTopElement = getPrecedenceOfSign(topElement);
+//                            precedenceOfCurrentElement = getPrecedenceOfSign(sign);
+//                        } else {
+//                            needRepeat = false;
+//                        }
+//                    }
 //
-//					queue.add(sign);
-//				}
-//			}
-//		}
+//                    queue.add(sign);
+//                }
+//            }
+//        }
 //
-//		for (int j = queue.getElementsNumber() - 1; j >= 0; j--) {
+//        for (int j = queue.getElementsNumber() - 1; j >= 0; j--) {
 //			/*
 //			 * 7. At the end of the
 //			 * expression, pop and print all operators on the stack. (No
 //			 * parentheses should remain.)
 //			 */
-//			char tempChar = (char) queue.get(j);
-//			queue.remove(j);
-//			if (tempChar != '(' && tempChar != ')')
-//				stringOut = stringOut + tempChar + " ";
-//		}
-//	}
+//            char tempChar = (char) queue.get(j);
+//            queue.remove(j);
+//            if (tempChar != '(' && tempChar != ')')
+//                stringOut = stringOut + tempChar + " ";
+//        }
+//    }
 //
-//	private static int getPrecedenceOfSign(char c) {
-//		int precedenceOfTopElement = 0;
-//		switch (c) {
-//			case '^':
-//				precedenceOfTopElement = 3;
-//				break;
-//			case '*':
-//				precedenceOfTopElement = 2;
-//				break;
-//			case '/':
-//				precedenceOfTopElement = 2;
-//				break;
-//			case '+':
-//				precedenceOfTopElement = 1;
-//				break;
-//			case '-':
-//				precedenceOfTopElement = 1;
-//				break;
-//		}
+//    private static int getPrecedenceOfSign(char c) {
+//        int precedenceOfTopElement = 0;
+//        switch (c) {
+//            case '^':
+//                precedenceOfTopElement = 3;
+//                break;
+//            case '*':
+//                precedenceOfTopElement = 2;
+//                break;
+//            case '/':
+//                precedenceOfTopElement = 2;
+//                break;
+//            case '+':
+//                precedenceOfTopElement = 1;
+//                break;
+//            case '-':
+//                precedenceOfTopElement = 1;
+//                break;
+//        }
 //
-//		return precedenceOfTopElement;
-//	}
+//        return precedenceOfTopElement;
+//    }
 //
-//	private static boolean isNumeric(String str) {
-//		return str.matches("-?\\d+(\\.\\d+)?"); // match a number with optional
-//		// '-' and decimal.
-//	}
+//    private static boolean isNumeric(String str) {
+//        return str.matches("-?\\d+(\\.\\d+)?"); // match a number with optional
+//        // '-' and decimal.
+//    }
 //}
