@@ -1,13 +1,12 @@
 package DSA.codetest.edu.innopolis.ru.Assignment1.MonteCarlo;
 
 import java.io.*;
-import java.util.ArrayList;
 
 class FileReaderWriter {
     FileReaderWriter() {}
 
-    ArrayList<Integer> readFromInputFile() {
-        ArrayList<Integer> inputArray = new ArrayList<>();
+    MyArrayList<Integer> readFromInputFile() {
+        MyArrayList<Integer> inputArray = new MyArrayList<>();
 
         InputStream in = null;
         try {

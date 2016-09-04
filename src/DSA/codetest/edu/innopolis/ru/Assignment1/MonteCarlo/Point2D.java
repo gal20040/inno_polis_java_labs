@@ -4,7 +4,7 @@ class Point2D {
     private Double x;
     private Double y;
 
-    public Point2D(Double x, Double y) {
+    Point2D(Double x, Double y) {
         this.x = x;
         this.y = y;
     }
