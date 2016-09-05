@@ -1,9 +1,21 @@
 package ItP.UniversityInformationSystem.enums;
 
-
 /**
  * List of names of days in week.
  */
 public enum DayOfWeek {
-    Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
+    MONDAY("Monday"),
+    TUESDAY("Tuesday"),
+    WEDNESDAY("Wednesday"),
+    THURSDAY("Thursday"),
+    FRIDAY("Friday"),
+    SATURDAY("Saturday"),
+    SUNDAY("Sunday");
+
+    private final String text;
+
+    DayOfWeek(final String text) {this.text = text;}
+
+    @Override
+    public String toString() {return text;}
 }

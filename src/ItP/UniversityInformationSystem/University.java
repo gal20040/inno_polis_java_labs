@@ -1,9 +1,7 @@
 package ItP.UniversityInformationSystem;
 
-import ItP.UniversityInformationSystem.enums.CoreElective;
-import ItP.UniversityInformationSystem.enums.DayOfWeek;
-import ItP.UniversityInformationSystem.enums.Gender;
-import ItP.UniversityInformationSystem.enums.ProgramAndYear;
+import ItP.UniversityInformationSystem.enums.*;
+import ItP.UniversityInformationSystem.excercises.*;
 import ItP.UniversityInformationSystem.persons.Assistant;
 import ItP.UniversityInformationSystem.persons.Instructor;
 import ItP.UniversityInformationSystem.persons.Student;
@@ -15,17 +13,17 @@ public class University {
     private static ArrayList<Student> listOfStudents = new ArrayList<>();
     private static ArrayList<Instructor> listOfInstructors = new ArrayList<>();
     private static ArrayList<Assistant> listOfAssistants = new ArrayList<>();
-    private static ArrayList<Lecture> lectureSchedule = new ArrayList<>();
+    private static ArrayList<Exercise> exerciseSchedule = new ArrayList<>();
 
     private static String templateNoDiscipline = "Discipline %s has not been found in the course list of program %s."
             + " %s %s %s has not been assigned to this course.";
 
     public static void main(String[] args) {
 
-        addLectureCourses();
         addStudents();
         addAssistants();
         addInstructors();
+        addLectureCourses();
 
 //        for (Student student : listOfStudents) {
 //            System.out.println(student.getFirstName());
@@ -49,34 +47,34 @@ public class University {
     private static void addInstructors() {
         Instructor tempInstructor;
 
-        tempInstructor = new Instructor("Adil", "Khan", Gender.Male);
+        tempInstructor = new Instructor("Adil", "Khan", Gender.MALE);
         listOfInstructors.add(tempInstructor);
         assignInstructorToCourse(tempInstructor, "Discrete Math/Logic", ProgramAndYear.BS1);
         assignInstructorToCourse(tempInstructor, "Data Structures and Algorithms", ProgramAndYear.BS3);
 
-        tempInstructor = new Instructor("Nikolaos", "Mavridis", Gender.Male);
+        tempInstructor = new Instructor("Nikolaos", "Mavridis", Gender.MALE);
         listOfInstructors.add(tempInstructor);
         assignInstructorToCourse(tempInstructor, "Computer Architecture", ProgramAndYear.BS1);
 
-        tempInstructor = new Instructor("Ales", "Zivkovic", Gender.Female);
+        tempInstructor = new Instructor("Ales", "Zivkovic", Gender.FEMALE);
         listOfInstructors.add(tempInstructor);
         assignInstructorToCourse(tempInstructor, "Computer Architecture", ProgramAndYear.BS2);
         assignInstructorToCourse(tempInstructor, "Managing Software Development", ProgramAndYear.MSIT_SE);
 
-        tempInstructor = new Instructor("Qiang", "Qu", Gender.Male);
+        tempInstructor = new Instructor("Qiang", "Qu", Gender.MALE);
         listOfInstructors.add(tempInstructor);
         assignInstructorToCourse(tempInstructor, "Data Modelling and Databases", ProgramAndYear.BS3);
 
-        tempInstructor = new Instructor("Eugene", "Zouev", Gender.Male);
+        tempInstructor = new Instructor("Eugene", "Zouev", Gender.MALE);
         listOfInstructors.add(tempInstructor);
         assignInstructorToCourse(tempInstructor, "Introduction to Programming", ProgramAndYear.BS3);
 
-        tempInstructor = new Instructor("Alexandr", "Klimchik", Gender.Male);
+        tempInstructor = new Instructor("Alexandr", "Klimchik", Gender.MALE);
         listOfInstructors.add(tempInstructor);
         assignInstructorToCourse(tempInstructor, "Data Structures and Algorithms", ProgramAndYear.MS1);
         assignInstructorToCourse(tempInstructor, "Industrial Robotics", ProgramAndYear.MS_R);
 
-        tempInstructor = new Instructor("Mohamad", "Kassab", Gender.Male);
+        tempInstructor = new Instructor("Mohamad", "Kassab", Gender.MALE);
         listOfInstructors.add(tempInstructor);
         assignInstructorToCourse(tempInstructor, "Data Modelling and Databases", ProgramAndYear.MS1);
     }
@@ -101,68 +99,68 @@ public class University {
     private static void addAssistants() {
         Assistant tempAssistant;
 
-        tempAssistant = new Assistant("Mansur", "Khazeev", Gender.Male);
+        tempAssistant = new Assistant("Mansur", "Khazeev", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Introduction to Programming", ProgramAndYear.BS3);
 
-        tempAssistant = new Assistant("Stas", "Protasov", Gender.Male);
+        tempAssistant = new Assistant("Stas", "Protasov", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Data Structures and Algorithms", ProgramAndYear.BS3);
 
-        tempAssistant = new Assistant("Sergey", "Gartsev", Gender.Male);
+        tempAssistant = new Assistant("Sergey", "Gartsev", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Data Modelling and Databases", ProgramAndYear.BS3);
 
-        tempAssistant = new Assistant("Sadegh", "Nobari", Gender.Male);
+        tempAssistant = new Assistant("Sadegh", "Nobari", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Data Modelling and Databases", ProgramAndYear.BS3);
 
-        tempAssistant = new Assistant("Artur", "Sagitov", Gender.Male);
+        tempAssistant = new Assistant("Artur", "Sagitov", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Computer Architecture", ProgramAndYear.BS1);
 
-        tempAssistant = new Assistant("Ilya", "Shimshik", Gender.Male);
+        tempAssistant = new Assistant("Ilya", "Shimshik", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Computer Architecture", ProgramAndYear.BS1);
 
-        tempAssistant = new Assistant("Ahmad", "Muhammad", Gender.Male);
+        tempAssistant = new Assistant("Ahmad", "Muhammad", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Computer Architecture", ProgramAndYear.BS1);
 
-        tempAssistant = new Assistant("Ramil", "Kuleev", Gender.Male);
+        tempAssistant = new Assistant("Ramil", "Kuleev", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Discrete Math/Logic", ProgramAndYear.BS1);
 
-        tempAssistant = new Assistant("Yunus", "Zaytaev", Gender.Male);
+        tempAssistant = new Assistant("Yunus", "Zaytaev", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Computer Architecture", ProgramAndYear.BS2);
 
-        tempAssistant = new Assistant("Bulat", "Gabbasov", Gender.Male);
+        tempAssistant = new Assistant("Bulat", "Gabbasov", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Computer Architecture", ProgramAndYear.BS2);
         assignAssistantToCourse(tempAssistant, "Data Modelling and Databases", ProgramAndYear.MS1);
 
-        tempAssistant = new Assistant("Roman", "Lavrenov", Gender.Male);
+        tempAssistant = new Assistant("Roman", "Lavrenov", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Data Structures and Algorithms", ProgramAndYear.MS1);
 
-        tempAssistant = new Assistant("Igor", "Danilov", Gender.Male);
+        tempAssistant = new Assistant("Igor", "Danilov", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Data Structures and Algorithms", ProgramAndYear.MS1);
 
-        tempAssistant = new Assistant("Albina", "Khusainova", Gender.Female);
+        tempAssistant = new Assistant("Albina", "Khusainova", Gender.FEMALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Data Modelling and Databases", ProgramAndYear.MS1);
 
-        tempAssistant = new Assistant("Alyona", "Kozlova", Gender.Female);
+        tempAssistant = new Assistant("Alyona", "Kozlova", Gender.FEMALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Managing Software Development", ProgramAndYear.MSIT_SE);
 
-        tempAssistant = new Assistant("Albert", "Nurgaliev", Gender.Male);
+        tempAssistant = new Assistant("Albert", "Nurgaliev", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Managing Software Development", ProgramAndYear.MSIT_SE);
 
-        tempAssistant = new Assistant("Vasilii", "Artemiev", Gender.Male);
+        tempAssistant = new Assistant("Vasilii", "Artemiev", Gender.MALE);
         listOfAssistants.add(tempAssistant);
         assignAssistantToCourse(tempAssistant, "Managing Software Development", ProgramAndYear.MSIT_SE);
     }
@@ -186,10 +184,10 @@ public class University {
     }
 
     private static void addStudents() {
-        listOfStudents.add(new Student("Sergei", "Efron", Gender.Male, ProgramAndYear.BS1));
-        listOfStudents.add(new Student("Vera", "Mukhina", Gender.Female, ProgramAndYear.BS3));
-        listOfStudents.add(new Student("Leonardo", "da Vinci", Gender.Male, ProgramAndYear.MSIT_SE));
-        listOfStudents.add(new Student("Marina", "Tsvetaeva", Gender.Female, ProgramAndYear.MS_R));
+        listOfStudents.add(new Student("Sergei", "Efron", Gender.MALE, ProgramAndYear.BS1));
+        listOfStudents.add(new Student("Vera", "Mukhina", Gender.FEMALE, ProgramAndYear.BS3));
+        listOfStudents.add(new Student("Leonardo", "da Vinci", Gender.MALE, ProgramAndYear.MSIT_SE));
+        listOfStudents.add(new Student("Marina", "Tsvetaeva", Gender.FEMALE, ProgramAndYear.MS_R));
 
         for (LectureCourse lectureCourse : listOfLectureCourse) {
             for (Student student : listOfStudents) {
@@ -203,53 +201,59 @@ public class University {
     private static void addLectureCourses() {
         LectureCourse tempLectureCourse;
 
-        tempLectureCourse = new LectureCourse("Computer Architecture", ProgramAndYear.BS1, CoreElective.Core);
+        tempLectureCourse = new LectureCourse("Computer Architecture", ProgramAndYear.BS1, CoreElective.CORE, Semester.AUTUMN);
         listOfLectureCourse.add(tempLectureCourse);
-        lectureSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.Monday));
+        exerciseSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.MONDAY));
 
-        tempLectureCourse = new LectureCourse("Discrete Math/Logic", ProgramAndYear.BS1, CoreElective.Core);
+        tempLectureCourse = new LectureCourse("Discrete Math/Logic", ProgramAndYear.BS1, CoreElective.CORE, Semester.AUTUMN);
         listOfLectureCourse.add(tempLectureCourse);
-        lectureSchedule.add(new Lecture(tempLectureCourse, 110, DayOfWeek.Tuesday));
+        exerciseSchedule.add(new Lecture(tempLectureCourse, 110, DayOfWeek.TUESDAY));
 
-        tempLectureCourse = new LectureCourse("Computer Architecture", ProgramAndYear.BS2, CoreElective.Core);
+        tempLectureCourse = new LectureCourse("Computer Architecture", ProgramAndYear.BS2, CoreElective.CORE, Semester.AUTUMN);
         listOfLectureCourse.add(tempLectureCourse);
-        lectureSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.Thursday));
+        exerciseSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.THURSDAY));
 
-        tempLectureCourse = new LectureCourse("Data Modelling and Databases", ProgramAndYear.BS3, CoreElective.Core);
+        tempLectureCourse = new LectureCourse("Data Modelling and Databases", ProgramAndYear.BS3, CoreElective.CORE, Semester.AUTUMN);
         listOfLectureCourse.add(tempLectureCourse);
-        lectureSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.Friday));
+        exerciseSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.FRIDAY));
+        exerciseSchedule.add(new LabSession(tempLectureCourse, 301, DayOfWeek.FRIDAY));
+        exerciseSchedule.add(new Examination(tempLectureCourse, 101, DayOfWeek.FRIDAY));
 
-        tempLectureCourse = new LectureCourse("Data Structures and Algorithms", ProgramAndYear.BS3, CoreElective.Core);
+        tempLectureCourse = new LectureCourse("Data Structures and Algorithms", ProgramAndYear.BS3, CoreElective.CORE, Semester.AUTUMN);
         listOfLectureCourse.add(tempLectureCourse);
-        lectureSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.Saturday));
+        exerciseSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.SATURDAY));
+        exerciseSchedule.add(new LabSession(tempLectureCourse, 320, DayOfWeek.SATURDAY));
+        exerciseSchedule.add(new Examination(tempLectureCourse, 120, DayOfWeek.SATURDAY));
 
-        tempLectureCourse = new LectureCourse("Introduction to Programming", ProgramAndYear.BS3, CoreElective.Core);
+        tempLectureCourse = new LectureCourse("Introduction to Programming", ProgramAndYear.BS3, CoreElective.CORE, Semester.SPRING);
         listOfLectureCourse.add(tempLectureCourse);
-        lectureSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.Monday));
+        exerciseSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.MONDAY));
+        exerciseSchedule.add(new LabSession(tempLectureCourse, 320, DayOfWeek.MONDAY));
+        exerciseSchedule.add(new Examination(tempLectureCourse, 120, DayOfWeek.MONDAY));
 
-        tempLectureCourse = new LectureCourse("Data Structures and Algorithms", ProgramAndYear.MS1, CoreElective.Core);
+        tempLectureCourse = new LectureCourse("Data Structures and Algorithms", ProgramAndYear.MS1, CoreElective.CORE, Semester.SPRING);
         listOfLectureCourse.add(tempLectureCourse);
-        lectureSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.Friday));
+        exerciseSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.FRIDAY));
 
-        tempLectureCourse = new LectureCourse("Data Modelling and Databases", ProgramAndYear.MS1, CoreElective.Core);
+        tempLectureCourse = new LectureCourse("Data Modelling and Databases", ProgramAndYear.MS1, CoreElective.CORE, Semester.SPRING);
         listOfLectureCourse.add(tempLectureCourse);
-        lectureSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.Wednesday));
+        exerciseSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.WEDNESDAY));
 
-        tempLectureCourse = new LectureCourse("Managing Software Development", ProgramAndYear.MSIT_SE, CoreElective.Core);
+        tempLectureCourse = new LectureCourse("Managing Software Development", ProgramAndYear.MSIT_SE, CoreElective.CORE, Semester.SPRING);
         listOfLectureCourse.add(tempLectureCourse);
-        lectureSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.Tuesday));
+        exerciseSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.TUESDAY));
 
-        tempLectureCourse = new LectureCourse("Industrial Robotics", ProgramAndYear.MS_R, CoreElective.Core);
+        tempLectureCourse = new LectureCourse("Industrial Robotics", ProgramAndYear.MS_R, CoreElective.CORE, Semester.SPRING);
         listOfLectureCourse.add(tempLectureCourse);
-        lectureSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.Friday));
+        exerciseSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.FRIDAY));
     }
 
     private static void printAllInfoAboutCourses() {
-        String template = "%s course \"%s\", program %s";
+        String template = "%s course \"%s\", program %s, %s semester";
 
         for (LectureCourse lectureCourse : listOfLectureCourse) {
             System.out.println(String.format(template, lectureCourse.getCoreElective(),
-                    lectureCourse.getTitle(), lectureCourse.getProgramAndYear()));
+                    lectureCourse.getTitle(), lectureCourse.getProgramAndYear(), lectureCourse.getSemester()));
             System.out.println("Instructor:");
             for (Instructor instructor : lectureCourse.getListOfInstructorsInCourse()) {
                 System.out.println("            " + instructor.getFirstName() + " " + instructor.getLastName());
