@@ -4,6 +4,7 @@ package DSA.codetest.edu.innopolis.ru.Assignment2.Hash;
 //http://www.algolist.net/Data_structures/Hash_table/Open_addressing
 //https://en.wikipedia.org/wiki/Linear_probing
 //https://en.wikipedia.org/wiki/Open_addressing
+//http://www.seostella.com/ru/article/2012/08/09/kollekcii-collections-v-java-map.html
 
 public class StringHash {
     public static void main(String[] args) {
