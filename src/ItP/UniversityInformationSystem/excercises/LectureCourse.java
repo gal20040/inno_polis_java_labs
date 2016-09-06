@@ -10,6 +10,8 @@ import ItP.UniversityInformationSystem.persons.Student;
 import java.util.ArrayList;
 
 public class LectureCourse {
+    private String lectureCourseID;
+    private static String personIDPrefix = "L_";
     private String title;
     private ProgramAndYear programAndYear;
     private CoreElective coreElective;
@@ -19,13 +21,16 @@ public class LectureCourse {
     private ArrayList<Instructor>   listOfInstructorsInCourse = new ArrayList<>();
     private ArrayList<Assistant>    listOfAssistantsInCourse = new ArrayList<>();
 
-    public LectureCourse(String title, ProgramAndYear programAndYear, CoreElective coreElective, Semester semester) {
+    public LectureCourse(int lectureCourseID, String title, ProgramAndYear programAndYear,
+                         CoreElective coreElective, Semester semester) {
+        this.lectureCourseID = personIDPrefix + lectureCourseID;
         this.title = title;
         this.programAndYear = programAndYear;
         this.coreElective = coreElective;
         this.semester = semester;
     }
 
+    public String                   getLectureCourseID() {return lectureCourseID;}
     public String                   getTitle() {return title;}
     public ProgramAndYear           getProgramAndYear() {return programAndYear;}
     public ArrayList<Student>       getListOfStudentsInCourse() {return listOfStudentsInCourse;}
