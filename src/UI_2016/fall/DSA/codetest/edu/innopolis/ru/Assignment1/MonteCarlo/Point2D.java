@@ -1,4 +1,4 @@
-package UI_2016.fall.ru.Assignment1.MonteCarlo;
+package UI_2016.fall.DSA.codetest.edu.innopolis.ru.Assignment1.MonteCarlo;
 
 class Point2D {
     private Double x;

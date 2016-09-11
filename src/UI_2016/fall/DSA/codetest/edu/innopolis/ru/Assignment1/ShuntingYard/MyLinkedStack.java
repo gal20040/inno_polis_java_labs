@@ -1,4 +1,4 @@
-package UI_2016.fall.ru.Assignment1.ShuntingYard;
+package UI_2016.fall.DSA.codetest.edu.innopolis.ru.Assignment1.ShuntingYard;
 
 class MyLinkedStack<T> {
     private int listSize;

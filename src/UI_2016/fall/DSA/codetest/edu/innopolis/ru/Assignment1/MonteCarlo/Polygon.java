@@ -1,4 +1,4 @@
-package UI_2016.fall.ru.Assignment1.MonteCarlo;
+package UI_2016.fall.DSA.codetest.edu.innopolis.ru.Assignment1.MonteCarlo;
 
 class Polygon {
     private MyArrayList<Point2D> pointsArray = new MyArrayList<>();

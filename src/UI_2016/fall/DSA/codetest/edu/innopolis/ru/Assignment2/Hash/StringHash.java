@@ -1,4 +1,4 @@
-package UI_2016.fall.ru.Assignment2.Hash;
+package UI_2016.fall.DSA.codetest.edu.innopolis.ru.Assignment2.Hash;
 
 //https://www.google.ru/search?q=Linear+probing&oq=Linear+probing&aqs=chrome..69i57&sourceid=chrome&ie=UTF-8#newwindow=1&safe=strict&q=Linear+probing+Open+addressing
 //http://www.algolist.net/Data_structures/Hash_table/Open_addressing
