@@ -14,10 +14,14 @@ public class Parenthesized extends Primary {
     }
 //    Opcode op;
 //    Term /*Factor*/ left, right;
+    private Expression expression;
+
+    @Override
+    long calculate() {return expression.calculate();}
 
     public Parenthesized() {}
     public Parenthesized(Object value, Expression typeOfObject) {super(value, typeOfObject);}
 
-    private Expression expression;
+
 //...
 }

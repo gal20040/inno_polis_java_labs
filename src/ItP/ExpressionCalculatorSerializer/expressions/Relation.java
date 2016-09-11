@@ -23,6 +23,9 @@ public class Relation extends Expression {
     Opcode op;
     Term /*Factor*/ left, right;
 
+    @Override
+    long calculate() {return ;}
+
     public Relation() {}
     public Relation(Object value, Expression typeOfObject) {super(value, typeOfObject);}
 

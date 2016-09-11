@@ -20,6 +20,27 @@ public class Logical extends Expression {
     Opcode op;
     Relation left, right;
 
+    @Override
+    long calculate() {
+        long r1 = left.calculate();
+        long r2 = right.calculate();
+
+        switch (op.toString()) {
+            case Opcode.AND:
+                return ((r1 > 0) && (r2 > 0)) ? 1 : 0;
+//            break;
+            case Opcode.OR:
+                return ((r1 > 0) || (r2 > 0)) ? 1 : 0;
+//...
+        }
+        return ;
+    }
+
+    @Override
+    String ToJSON() {
+        return ;
+    }
+
     public Logical() {}
     public Logical(Object value, Expression typeOfObject) {super(value, typeOfObject);}
 

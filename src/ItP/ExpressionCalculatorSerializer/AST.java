@@ -19,11 +19,15 @@ public class AST {
 
         if (input == null)
             assert false : "Input string is null";
-        else {
-            Parser parser = new Parser();
-//            Expression expressionTree = parser.parse(inputStack);
-        }
-//...
+
+        Parser parser = new Parser();
+        Expression expressionTree = parser.parse(inputStack);
+
+//        long result = expressionTree.calculate();
+//        System.out.println(result);
+//
+//        String serialized = expressionTree.ToJSON();
+//        System.out.println(serialized);
     }
 
     private static Stack<Expression> preParseInputString(String inputString) {

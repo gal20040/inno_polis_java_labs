@@ -2,7 +2,7 @@ package ItP.ExpressionCalculatorSerializer.expressions;
 
 import java.util.PriorityQueue;
 
-public class Expression {
+public abstract class Expression {
     private Object value;
     private Expression typeOfObject;
 
@@ -11,6 +11,10 @@ public class Expression {
         this.value = value;
         this.typeOfObject = typeOfObject;
     }
+
+    public abstract long calculate();
+    public abstract String ToJSON();
+
 
     public Object getValue() {return value;}
     public Expression getTypeOfObject() {return typeOfObject;}
