@@ -1,0 +1,5 @@
+http://json.org/json-ru.html
+http://goloburdin.blogspot.ru/2011/03/json-java.html
+https://www.mkyong.com/java/json-simple-example-read-and-write-json/
+http://www.tutorialspoint.com/json/json_java_example.htm
+https://www.mkyong.com/java/jackson-2-convert-java-object-to-from-json/
