@@ -20,18 +20,28 @@ public class Relation extends Expression {
         @Override
         public String toString() {return text;}
     }
-    Opcode op;
-    Term /*Factor*/ left, right;
-
-    @Override
-    long calculate() {return ;}
+    Opcode opcode;
+    Expression /*Term*/ /*Factor*/ left, right;
 
     public Relation() {}
-    public Relation(Object value, Expression typeOfObject) {super(value, typeOfObject);}
+    //    public Relation(Object value, Expression typeOfObject) {super(value, typeOfObject);}
+    public Relation(Object value) {super(value);}
 
-    static Expression parseRelation(PriorityQueue<Expression> inputQueue) {
-        Expression result = Term.parseTerm(inputQueue);
-        return result;
+    public Relation(Expression left, Opcode opcode, Expression right) {
+        this.left = left;
+        this.opcode = opcode;
+        this.right = right;
     }
+
+    @Override
+    public long calculate() {return 1;} //TODO доделать
+
+    @Override
+    public String ToJSON() {return "";} //TODO доделать
+
+//    static Expression parseRelation(PriorityQueue<Expression> inputQueue) {
+//        Expression result = Term.parseTerm(inputQueue);
+//        return result;
+//    }
 //...
 }

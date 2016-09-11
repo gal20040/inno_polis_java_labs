@@ -17,10 +17,14 @@ public class Parenthesized extends Primary {
     private Expression expression;
 
     @Override
-    long calculate() {return expression.calculate();}
+    public long calculate() {return expression.calculate();} //TODO доделать
+
+    @Override
+    public String ToJSON() {return "";} //TODO доделать
 
     public Parenthesized() {}
-    public Parenthesized(Object value, Expression typeOfObject) {super(value, typeOfObject);}
+//    public Parenthesized(Object value, Expression typeOfObject) {super(value, typeOfObject);}
+    public Parenthesized(Object value) {super(value);}
 
 
 //...

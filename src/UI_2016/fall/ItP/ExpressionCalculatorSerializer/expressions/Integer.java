@@ -6,10 +6,14 @@ public class Integer extends Primary {
     private long value;
 
     @Override
-    long calculate() {return value;}
+    public long calculate() {return value;} //TODO доделать
+
+    @Override
+    public String ToJSON() {return "";} //TODO доделать
 
     public Integer() {}
-    public Integer(Object value, Expression typeOfObject) {super(value, typeOfObject);}
+//    public Integer(Object value, Expression typeOfObject) {super(value, typeOfObject);}
+    public Integer(Object value) {super(value);}
 
     static Expression parseInteger(PriorityQueue<Expression> inputQueue) {
         Expression result = null;

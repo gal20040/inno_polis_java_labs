@@ -14,14 +14,27 @@ public class Term extends Expression {
         @Override
         public String toString() {return text;}
     }
-    Opcode op;
-    Factor left, right;
+    Opcode opcode;
+    Expression /*Factor*/ left, right;
 
     public Term() {}
-    public Term(Object value, Expression typeOfObject) {super(value, typeOfObject);}
+    //    public Term(Object value, Expression typeOfObject) {super(value, typeOfObject);}
+    public Term(Object value) {super(value);}
 
-    static Expression parseTerm(PriorityQueue<Expression> inputQueue) {
-        Expression result = Factor.parseFactor(inputQueue);
-        return result;
+    public Term(Expression left, Opcode opcode, Expression right) {
+        this.left = left;
+        this.opcode = opcode;
+        this.right = right;
     }
+
+    @Override
+    public long calculate() {return 1;} //TODO доделать
+
+    @Override
+    public String ToJSON() {return "";} //TODO доделать
+
+//    static Expression parseTerm(PriorityQueue<Expression> inputQueue) {
+//        Expression result = Factor.parseFactor(inputQueue);
+//        return result;
+//    }
 }
