@@ -1,29 +1,24 @@
 package UI_2016.fall.ItP.UniversityInformationSystem.persons;
 
-
-import UI_2016.fall.ItP.UniversityInformationSystem.LectureCourse;
 import UI_2016.fall.ItP.UniversityInformationSystem.enums.Gender;
 import UI_2016.fall.ItP.UniversityInformationSystem.enums.Grade;
 import UI_2016.fall.ItP.UniversityInformationSystem.enums.ProgramAndYear;
 
-public class Student {
-    private String firstName, lastName;
-    private Gender gender;
+public class Student extends Person {
     private ProgramAndYear programAndYear;
-    private LectureCourse listOfLectures;
     private Grade listOfGrades;
+    private static String personIDPrefix = "S_";
 
-    public Student(String firstName, String lastName, Gender gender, ProgramAndYear programAndYear) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.gender = gender;
+    public Student(String firstName, String lastName, Gender gender, int personID, ProgramAndYear programAndYear) {
+        super(firstName, lastName, gender, personIDPrefix + personID);
         this.programAndYear = programAndYear;
     }
 
-    public String           getFirstName() {return firstName;}
-    public String           getLastName() {return lastName;}
-    public Gender           getGender() {return gender;}
     public ProgramAndYear   getProgramAndYear() {return programAndYear;}
-    public LectureCourse    getListOfLectures() {return listOfLectures;}
     public Grade            getListOfGrades() {return listOfGrades;}
+
+    public void setProgramAndYear(ProgramAndYear programAndYear) {this.programAndYear = programAndYear;}
+    public void setListOfGrades(Grade listOfGrades) {this.listOfGrades = listOfGrades;}
+
+    public void setPersonID(int personID) {super.setPersonID(personIDPrefix + personID);}
 }

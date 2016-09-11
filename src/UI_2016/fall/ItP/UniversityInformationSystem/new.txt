@@ -1,0 +1,9 @@
+Students	have	a	StuID,	 Name	and	Semester.	 	The	StuID identifies	a	student	uniquely.
+Lectures	have	a	LecID,	CP	and	Title.		The	LecID identifies	a	lecture	uniquely.
+Professors	have	a	ProfID,	Name,	Level	and	Room.	The	ProfID identifies	a	professor	uniquely.
+Researchers	have	a	ResD,	Name	and	(research)	Area.	The	AssiIDidentifies	an	assistent uniquely.
+Students	attend	lectures.
+Lectures	can	be	prerequisites	for	other	lectures.	
+Professors	give	lectures.
+Researchers work	with professors.
+Students	are	tested	by	professors	about	lectures.	Students	 receive	grades	as	part	of	these	tests.
