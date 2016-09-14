@@ -1,6 +1,6 @@
 package UI_2016.fall.ItP.ExpressionCalculatorSerializer.expressions;
 
-import java.util.PriorityQueue;
+import org.json.simple.JSONObject;
 
 public class Term extends Expression {
     public enum Opcode {
@@ -14,11 +14,9 @@ public class Term extends Expression {
         @Override
         public String toString() {return text;}
     }
-    Opcode opcode;
-    Expression /*Factor*/ left, right;
+    private Opcode opcode;
+    private Expression /*Factor*/ left, right;
 
-    public Term() {}
-    //    public Term(Object value, Expression typeOfObject) {super(value, typeOfObject);}
     public Term(Object value) {super(value);}
 
     public Term(Expression left, Opcode opcode, Expression right) {
@@ -28,13 +26,26 @@ public class Term extends Expression {
     }
 
     @Override
-    public long calculate() {return 1;} //TODO доделать
+    public long calculate() {
+        long r1 = left.calculate();
+        long r2 = right.calculate();
+        switch (opcode.toString()) {
+            case "+":
+                return r1 + r2;
+            case "-":
+                return r1 - r2;
+        }
+        assert false : "Unknown term operator";
+        return -999999999;
+    }
 
     @Override
-    public String ToJSON() {return "";} //TODO доделать
+    public JSONObject toJSON() {
+        //TODO реализовать общий метод для всех всех классов
+        JSONObject obj = new JSONObject();
+        obj.put("left", left.toJSON());
+        obj.put("right", right.toJSON());
 
-//    static Expression parseTerm(PriorityQueue<Expression> inputQueue) {
-//        Expression result = Factor.parseFactor(inputQueue);
-//        return result;
-//    }
+        obj.put("opCode", opcode.toString());
+        return obj;}
 }

@@ -1,23 +1,16 @@
 package UI_2016.fall.ItP.ExpressionCalculatorSerializer.expressions;
 
-import java.util.PriorityQueue;
+import org.json.simple.JSONObject;
 
 public class Integer extends Primary {
-    private long value;
+    @Override
+    public long calculate() {return java.lang.Integer.parseInt(super.getValue()+"");} //TODO доделать
 
     @Override
-    public long calculate() {return value;} //TODO доделать
+    public JSONObject toJSON() {
+        JSONObject obj = new JSONObject();
+        obj.put("value", java.lang.Integer.parseInt(super.getValue()+""));
+        return obj;}
 
-    @Override
-    public String ToJSON() {return "";} //TODO доделать
-
-    public Integer() {}
-//    public Integer(Object value, Expression typeOfObject) {super(value, typeOfObject);}
     public Integer(Object value) {super(value);}
-
-    static Expression parseInteger(PriorityQueue<Expression> inputQueue) {
-        Expression result = null;
-        return result;
-    }
-//...
 }

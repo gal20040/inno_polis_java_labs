@@ -1,5 +1,7 @@
 package UI_2016.fall.ItP.ExpressionCalculatorSerializer.expressions;
 
+import org.json.simple.JSONObject;
+
 public class Parenthesized extends Primary {
     public enum Opcode {
         LEFT_BRACKET("("),
@@ -12,20 +14,15 @@ public class Parenthesized extends Primary {
         @Override
         public String toString() {return text;}
     }
-//    Opcode op;
-//    Term /*Factor*/ left, right;
-    private Expression expression;
 
     @Override
-    public long calculate() {return expression.calculate();} //TODO доделать
+    public long calculate() {assert false : "Unknown parenthesized operator";
+        return 1;}
 
     @Override
-    public String ToJSON() {return "";} //TODO доделать
+    public JSONObject toJSON() {
+        assert false : "Unknown parenthesized operator";
+        return new JSONObject();}
 
-    public Parenthesized() {}
-//    public Parenthesized(Object value, Expression typeOfObject) {super(value, typeOfObject);}
     public Parenthesized(Object value) {super(value);}
-
-
-//...
 }

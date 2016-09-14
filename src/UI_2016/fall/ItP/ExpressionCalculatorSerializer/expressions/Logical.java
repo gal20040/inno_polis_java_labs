@@ -1,13 +1,13 @@
 package UI_2016.fall.ItP.ExpressionCalculatorSerializer.expressions;
 
-import java.util.PriorityQueue;
+import org.json.simple.JSONObject;
 
 public class Logical extends Expression {
     public enum Opcode {
         AND("and"),
         OR("or"),
         XOR("xor"),
-        NONE("none");
+        NONE("none"); //TODO разобраться с NONE
 
         private final String text;
 
@@ -17,30 +17,36 @@ public class Logical extends Expression {
         public String toString() {return text;}
     }
 
-    Opcode opcode;
-    Expression left, right;
+    private Opcode opcode;
+    private Expression left, right;
 
     @Override
     public long calculate() {
         long r1 = left.calculate();
         long r2 = right.calculate();
 
-//        switch (op.toString()) {
-//            case Opcode.AND:
-//                return ((r1 > 0) && (r2 > 0)) ? 1 : 0;
-////            break;
-//            case Opcode.OR:
-//                return ((r1 > 0) || (r2 > 0)) ? 1 : 0;
-//...
-//        }
-        return 1; //TODO доделать
+        switch (opcode.toString()) {
+            case "and":
+                return ((r1 > 0) && (r2 > 0)) ? 1 : 0;
+            case "or":
+                return ((r1 > 0) || (r2 > 0)) ? 1 : 0;
+            case "xor":
+                return r1 != r2 ? 1 : 0;
+        }
+        assert false : "Unknown logical operator";
+        return -999999999;
     }
 
     @Override
-    public String ToJSON() {return "";} //TODO доделать
+    public JSONObject toJSON() {
+        //TODO реализовать общий метод для всех всех классов
+        JSONObject obj = new JSONObject();
+        obj.put("left", left.toJSON());
+        obj.put("right", right.toJSON());
 
-    public Logical() {}
-//    public Logical(Object value, Expression typeOfObject) {super(value, typeOfObject);}
+        obj.put("opCode", opcode.toString());
+        return obj;}
+
     public Logical(Object value) {super(value);}
 
     public Logical(Expression left, Opcode opcode, Expression right) {
@@ -48,18 +54,4 @@ public class Logical extends Expression {
         this.opcode = opcode;
         this.right = right;
     }
-
-//    static Expression parseLogical(PriorityQueue<Expression> inputQueue) {
-//        Expression result = Relation.parseRelation(inputQueue);
-////        while (true) {
-////            Relation.Opcode op = parseLogOperator();
-////            if ( op != Relation.Opcode.none ) {
-////                Expression right = parseRelation();
-////                result = new Logical(op,result,right);
-////            }
-////            break;
-////        }
-//        return result;
-//    }
-//...
 }

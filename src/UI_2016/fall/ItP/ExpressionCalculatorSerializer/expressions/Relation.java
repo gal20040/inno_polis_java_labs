@@ -1,6 +1,6 @@
 package UI_2016.fall.ItP.ExpressionCalculatorSerializer.expressions;
 
-import java.util.PriorityQueue;
+import org.json.simple.JSONObject;
 
 public class Relation extends Expression {
     public enum Opcode {
@@ -10,8 +10,7 @@ public class Relation extends Expression {
         GREATER_EQUAL(">="),
         EQUAL("="),
         NOT_EQUAL("!="),
-//        EXCLAMATION_POINT("!"),
-        NONE("NONE"); //TODO что такое NONE?
+        NONE("NONE"); //TODO разобраться с NONE
 
         private final String text;
 
@@ -20,11 +19,9 @@ public class Relation extends Expression {
         @Override
         public String toString() {return text;}
     }
-    Opcode opcode;
-    Expression /*Term*/ /*Factor*/ left, right;
+    private Opcode opcode;
+    private Expression left, right;
 
-    public Relation() {}
-    //    public Relation(Object value, Expression typeOfObject) {super(value, typeOfObject);}
     public Relation(Object value) {super(value);}
 
     public Relation(Expression left, Opcode opcode, Expression right) {
@@ -34,14 +31,34 @@ public class Relation extends Expression {
     }
 
     @Override
-    public long calculate() {return 1;} //TODO доделать
+    public long calculate() {
+        long r1 = left.calculate();
+        long r2 = right.calculate();
+        switch (opcode.toString()) {
+            case "<":
+                return (r1 < r2) ? 1 : 0;
+            case "<=":
+                return (r1 <= r2) ? 1 : 0;
+            case ">":
+                return (r1 > r2) ? 1 : 0;
+            case ">=":
+                return (r1 >= r2) ? 1 : 0;
+            case "=":
+                return (r1 == r2) ? 1 : 0;
+            case "!=":
+                return (r1 != r2) ? 1 : 0;
+        }
+        assert false : "Unknown relation operator";
+        return -999999999;
+    }
 
     @Override
-    public String ToJSON() {return "";} //TODO доделать
+    public JSONObject toJSON() {
+        //TODO реализовать общий метод для всех классов
+        JSONObject obj = new JSONObject();
+        obj.put("left", left.toJSON());
+        obj.put("right", right.toJSON());
 
-//    static Expression parseRelation(PriorityQueue<Expression> inputQueue) {
-//        Expression result = Term.parseTerm(inputQueue);
-//        return result;
-//    }
-//...
+        obj.put("opCode", opcode.toString());
+        return obj;}
 }
