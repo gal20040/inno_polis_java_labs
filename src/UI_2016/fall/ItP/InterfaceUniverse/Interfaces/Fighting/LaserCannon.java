@@ -1,8 +1,8 @@
 package UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Fighting;
 
-public class Torpedo implements SetWeaponCharacteristics, SomeWeapon {
-    private int damageRate = 20000;
-    private String nameOfWeapon = "Torpedo";
+public class LaserCannon implements SetWeaponCharacteristics, SomeWeapon {
+    private int damageRate = 200;
+    private String nameOfWeapon = "Laser cannon";
 
     @Override
     public int getDamageRate() {return damageRate;}

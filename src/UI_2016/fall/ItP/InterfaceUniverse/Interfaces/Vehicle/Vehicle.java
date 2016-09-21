@@ -1,8 +1,10 @@
 package UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Vehicle;
 
+import UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Base.HasDescription;
 import UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Base.HasName;
+import UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Base.demonstrateOneself;
 
-abstract class Vehicle implements HasName, HasDescription, HasCrew {
+abstract class Vehicle implements demonstrateOneself, HasName, HasDescription, HasCrew {
     private String name;
     //TODO сделать описание команды
 
@@ -25,7 +27,9 @@ abstract class Vehicle implements HasName, HasDescription, HasCrew {
 
     @Override
     public void printOutDescription() {
-        System.out.println("Название: " + getName());
+        System.out.print("Название: " + getName() + " - ");
+        demonstrateOneself();
+
         System.out.println();
     }
 }
