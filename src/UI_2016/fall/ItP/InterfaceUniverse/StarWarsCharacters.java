@@ -15,18 +15,18 @@ public class StarWarsCharacters {
         anakin_Skywalker.introduceItself();
         weaponList.clear();
 
-        ////http://ru.starwars.wikia.com/wiki/C-3PO
+        //http://ru.starwars.wikia.com/wiki/C-3PO
         Droid3POSeries c_3PO = new Droid3POSeries("C-3PO", "AI", anakin_Skywalker, "Кто-нибудь! Помогите! Пожалуйста, помогите! Мы обречены!");
         c_3PO.introduceItself();
 
         //Я хозяин магазина запчастей в Мос Эспа на планете Татуин.
-        ////http://ru.starwars.wikia.com/wiki/Уотто
+        //http://ru.starwars.wikia.com/wiki/Уотто
         Toydarian watto = new Toydarian("Watto", "NI", null,
                 "И что это Вы рукой машете, словно джедай какой-нибудь?"
                         + " Я — тойдарианец, и ваши штучки на меня не действуют, только деньги.");
         watto.introduceItself();
 
-        ////http://ru.starwars.wikia.com/wiki/R2-D2
+        //http://ru.starwars.wikia.com/wiki/R2-D2
         DroidR2Series r2d2 = new DroidR2Series("R2-D2", "AI", anakin_Skywalker, "zzz-zz-zz---zzz-zz--z-z-z--z"); //TODO найти хорошую фразу
         r2d2.introduceItself();
 

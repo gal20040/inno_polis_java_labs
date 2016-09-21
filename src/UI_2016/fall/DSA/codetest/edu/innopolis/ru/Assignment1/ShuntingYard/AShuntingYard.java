@@ -24,6 +24,7 @@ package UI_2016.fall.DSA.codetest.edu.innopolis.ru.Assignment1.ShuntingYard;
  11.0
  */
 class AShuntingYard {
+/*Program is ok, but i've commented it for non intersection with other programs.*/
     public static void main(String[] args) {
         FileReaderWriter fileReaderWriter = new FileReaderWriter();
         MyLinkedQueue<Integer> inputQueue = fileReaderWriter.readFromInputFile();

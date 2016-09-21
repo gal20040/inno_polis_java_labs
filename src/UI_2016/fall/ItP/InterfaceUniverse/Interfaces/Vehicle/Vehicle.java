@@ -2,9 +2,9 @@ package UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Vehicle;
 
 import UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Base.HasDescription;
 import UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Base.HasName;
-import UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Base.demonstrateOneself;
+import UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Base.DemonstrateOneself;
 
-abstract class Vehicle implements demonstrateOneself, HasName, HasDescription, HasCrew {
+abstract class Vehicle implements DemonstrateOneself, HasName, HasDescription, HasCrew {
     private String name;
     //TODO сделать описание команды
 

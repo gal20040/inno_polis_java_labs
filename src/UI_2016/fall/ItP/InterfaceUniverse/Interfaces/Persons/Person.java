@@ -1,9 +1,9 @@
 package UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Persons;
 
 import UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Base.HasName;
-import UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Base.demonstrateOneself;
+import UI_2016.fall.ItP.InterfaceUniverse.Interfaces.Base.DemonstrateOneself;
 
-public abstract class Person implements demonstrateOneself, Intelligence, HasName, HasFamousPhrase, HasMaster {
+public abstract class Person implements DemonstrateOneself, Intelligence, HasName, HasFamousPhrase, HasMaster {
     private String name;
     private Person master;
     private String famousPhrase;
