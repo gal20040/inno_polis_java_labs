@@ -71,7 +71,7 @@
 //                        costArray[n][w][1] = (String) costArray[n - 1][w - itemsList.get(n - 1).getWeight()][1]
 //                                + " " + (n - 1);
 //                        maxCostElementsNumber = (String) costArray[n][w][1];
-//                    } else
+//                    } else //TODO заменить на continue - http://developer.alexanderklimov.ru/android/java/break.php#continue
 //                        elseStatement = true;
 //                } else
 //                    elseStatement = true;
