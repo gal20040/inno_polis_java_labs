@@ -55,6 +55,10 @@ class Parser {
                 i++;
             } else if (((sign + "") + inputString.charAt(i+1) + inputString.charAt(i+2)
                     + inputString.charAt(i+3)).equals(Relation.Opcode.NONE.toString())) {
+                /*TODO здесь и в нескольких ещё местах проблема: если до конца входной строки осталось мало символов,
+                то может вылететь исключение StringIndexOutOfBoundsException, потому что на слово NONE
+                надо 4 знака, а до конца строки может остаться меньше знаков
+                пример: "28or1"*/
                 if (inputStack.peek() instanceof Term) {
                     inputStack.add(new Relation(Relation.Opcode.NONE.toString()));
                 } else if (inputStack.peek() instanceof Relation) {
