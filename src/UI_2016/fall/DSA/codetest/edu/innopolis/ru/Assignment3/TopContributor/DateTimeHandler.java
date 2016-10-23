@@ -9,22 +9,22 @@ class DateTimeHandler {
     private final int rate = 1000 * 60; //1000 milliseconds in 1 second and 60 seconds in 1 minute
 
     /**
-     * Constructs instance with default date-time format.
+     * Construct instance with default date-time format.
      */
     DateTimeHandler() {
         format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
     }
 
     /**
-     * Constructs instance with assigned date-time format.
+     * Construct instance with assigned date-time format.
      */
     DateTimeHandler(String dateFormat) {
         format = new SimpleDateFormat(dateFormat);
     }
 
     /**
-     * Parses <currentString> from <beginPosition> till <endPosition> with pattern defined in class constructor.
-     * Returns time stamp in minutes.
+     * Parse <currentString> from <beginPosition> till <endPosition> with pattern defined in class constructor.
+     * Return time stamp in minutes.
      */
     long getTimeStampInMinutes(String currentString, int beginPosition, int endPosition) {
         Date dateBegin = format.parse(currentString.substring(beginPosition, endPosition), new ParsePosition(0));
