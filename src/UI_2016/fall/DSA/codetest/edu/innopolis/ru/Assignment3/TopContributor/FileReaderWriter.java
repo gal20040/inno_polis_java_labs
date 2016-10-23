@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileReaderWriter {
+class FileReaderWriter {
     ArrayList<String> readFromInputFile() {
         ArrayList<String> inputList = new ArrayList<>();
         Scanner scanner = null;
