@@ -3,22 +3,33 @@ package UI_2016.fall.ItP.UniversityInformationSystem.persons;
 import UI_2016.fall.ItP.UniversityInformationSystem.enums.Gender;
 import UI_2016.fall.ItP.UniversityInformationSystem.enums.Grade;
 import UI_2016.fall.ItP.UniversityInformationSystem.enums.ProgramAndYear;
+import UI_2016.fall.ItP.UniversityInformationSystem.enums.Semester;
+import UI_2016.fall.ItP.UniversityInformationSystem.excercises.Course;
+
+import java.util.TreeMap;
 
 public class Student extends Person {
     private ProgramAndYear programAndYear;
-    private Grade listOfGrades;
-    private static String personIDPrefix = "S_";
+    private Semester semester;
+    private TreeMap<Course, Grade> treeOfGrades;
+    private final static String personIDPrefix = "S_";
+    private final static String personType = "Student";
+    private String subGroup;
 
-    public Student(String firstName, String lastName, Gender gender, int personID, ProgramAndYear programAndYear) {
-        super(firstName, lastName, gender, personIDPrefix + personID);
+    public Student(String firstName, String lastName, Gender gender, ProgramAndYear programAndYear, Semester semester, String subGroup) {
+        super(firstName, lastName, gender, personIDPrefix);
         this.programAndYear = programAndYear;
+        this.semester = semester;
+        this.subGroup = subGroup;
     }
 
     public ProgramAndYear   getProgramAndYear() {return programAndYear;}
-    public Grade            getListOfGrades() {return listOfGrades;}
+    public TreeMap<Course, Grade> getGrades() {return treeOfGrades;}
+    public Semester getSemester() {return semester;}
+    public String getSubGroup() {return subGroup;}
 
+    public void setSubGroup(String subGroup) {this.subGroup = subGroup;}
+    public void setSemester(Semester semester) {this.semester = semester;}
     public void setProgramAndYear(ProgramAndYear programAndYear) {this.programAndYear = programAndYear;}
-    public void setListOfGrades(Grade listOfGrades) {this.listOfGrades = listOfGrades;}
-
-    public void setPersonID(int personID) {super.setPersonID(personIDPrefix + personID);}
+    public void setGrades(TreeMap<Course, Grade> treeOfGrades) {this.treeOfGrades = treeOfGrades;}
 }

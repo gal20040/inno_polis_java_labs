@@ -2,30 +2,27 @@ package UI_2016.fall.ItP.UniversityInformationSystem.persons;
 
 import UI_2016.fall.ItP.UniversityInformationSystem.enums.Gender;
 
-class Person {
+import java.util.Random;
+
+public abstract class Person {
     private String firstName, lastName;
     private Gender gender;
-//    private LectureCourse listOfLectures;
     private String personID;
+    private final static int IDcapacity = 99999;
+    private final static String personType = "Person";
 
-//    private Person() {}
-
-    Person(String firstName, String lastName, Gender gender, String personIDString) {
+    Person(String firstName, String lastName, Gender gender, String personIDPrefix) {
+        Random random = new Random();
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
-        this.personID = personIDString;
+        this.personID = personIDPrefix + random.nextInt(IDcapacity);
     }
 
     public String           getFirstName()                                  {return firstName;}
     public String           getLastName()                                   {return lastName;}
     public Gender           getGender()                                     {return gender;}
-////    public LectureCourse    getListOfLectures()                             {return listOfLectures;}
-    public String              getPersonID()                                   {return personID;}
-//
-    public void             setFirstName(String firstName)                  {this.firstName = firstName;}
-    public void             setLastName(String lastName)                    {this.lastName = lastName;}
-    public void             setGender(Gender gender)                        {this.gender = gender;}
-//    public void             setListOfLectures(LectureCourse listOfLectures) {this.listOfLectures = listOfLectures;}
-    void             setPersonID(String personIDString)                       {this.personID = personIDString;}
+    public String           getPersonID()                                   {return personID;}
+
+    public String getPersonType() {return personType;}
 }

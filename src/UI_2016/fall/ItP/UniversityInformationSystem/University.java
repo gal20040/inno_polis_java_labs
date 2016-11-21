@@ -4,288 +4,539 @@ import UI_2016.fall.ItP.UniversityInformationSystem.enums.*;
 import UI_2016.fall.ItP.UniversityInformationSystem.excercises.*;
 import UI_2016.fall.ItP.UniversityInformationSystem.persons.Assistant;
 import UI_2016.fall.ItP.UniversityInformationSystem.persons.Instructor;
+import UI_2016.fall.ItP.UniversityInformationSystem.persons.Person;
 import UI_2016.fall.ItP.UniversityInformationSystem.persons.Student;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class University {
-    private static ArrayList<LectureCourse> listOfLectureCourse = new ArrayList<>();
+    private static ArrayList<Course> listOfCourse = new ArrayList<>();
     private static ArrayList<Student> listOfStudents = new ArrayList<>();
     private static ArrayList<Instructor> listOfInstructors = new ArrayList<>();
     private static ArrayList<Assistant> listOfAssistants = new ArrayList<>();
     private static ArrayList<Exercise> exerciseSchedule = new ArrayList<>();
-    private static Random random = new Random();
 
-    private static String templateNoDiscipline = "Discipline %s has not been found in the course list of program %s."
+    static ArrayList<Course> getListOfCourse() {return listOfCourse;}
+    static ArrayList<Student> getListOfStudents() {return listOfStudents;}
+    static ArrayList<Instructor> getListOfInstructors() {return listOfInstructors;}
+    static ArrayList<Assistant> getListOfAssistants() {return listOfAssistants;}
+    static ArrayList<Exercise> getExerciseSchedule() {return exerciseSchedule;}
+
+    private final static String templateNoDiscipline = "Discipline \"%s\" has not been found in the course list of program %s."
             + " %s %s %s has not been assigned to this course.";
 
     public static void main(String[] args) {
-
-        addLectureCourses();
-        addStudents();
-        addAssistants();
-        addInstructors();
-
-
-//        for (Student student : listOfStudents) {
-//            System.out.println(student.getFirstName());
-//        }
-//        System.out.println();
-//
-//        for (LectureCourse lectureCourse : listOfLectureCourse) {
-//            for (Student student : lectureCourse.getListOfStudentsInCourse()) {
-//                student.setFirstName(student.getFirstName() + "1");
-//            }
-//        }
-//
-//        for (Student student : listOfStudents) {
-//            System.out.println(student.getFirstName());
-//        }
-//        System.out.println();
-
-        printAllInfoAboutCourses();
+        initializeCourses();
+        initializeStudents();
+        initializeInstructors();
+        initializeAssistants();
+        createSchedule();
+        InfoPrinter.printAllInfoAboutCourses();
+        InfoPrinter.getAllStudentsInfo();
+        InfoPrinter.getAllInstructorsInfo();
     }
 
-    private static void addInstructors() {
-        Instructor tempInstructor;
+    private static void createSchedule() {
+        DayOfWeek dayOfWeek;
+        String courseTitle;
+        Course course;
+        Semester semester;
+        ProgramAndYear programAndYear;
+        LabSession labSession;
+        Lecture lecture;
 
-        tempInstructor = new Instructor("Adil", "Khan", Gender.MALE, random.nextInt(10000));
-        listOfInstructors.add(tempInstructor);
-        assignInstructorToCourse(tempInstructor, "Discrete Math/Logic", ProgramAndYear.BS1);
-        assignInstructorToCourse(tempInstructor, "Data Structures and Algorithms", ProgramAndYear.BS3);
 
-        tempInstructor = new Instructor("Nikolaos", "Mavridis", Gender.MALE, random.nextInt(10000));
-        listOfInstructors.add(tempInstructor);
-        assignInstructorToCourse(tempInstructor, "Computer Architecture", ProgramAndYear.BS1);
+        semester = Semester.AUTUMN2016;
+        {
 
-        tempInstructor = new Instructor("Ales", "Zivkovic", Gender.FEMALE, random.nextInt(10000));
-        listOfInstructors.add(tempInstructor);
-        assignInstructorToCourse(tempInstructor, "Computer Architecture", ProgramAndYear.BS2);
-        assignInstructorToCourse(tempInstructor, "Managing Software Development", ProgramAndYear.MSIT_SE);
 
-        tempInstructor = new Instructor("Qiang", "Qu", Gender.MALE, random.nextInt(10000));
-        listOfInstructors.add(tempInstructor);
-        assignInstructorToCourse(tempInstructor, "Data Modelling and Databases", ProgramAndYear.BS3);
+            programAndYear = ProgramAndYear.BS3;
+            {
 
-        tempInstructor = new Instructor("Eugene", "Zouev", Gender.MALE, random.nextInt(10000));
-        listOfInstructors.add(tempInstructor);
-        assignInstructorToCourse(tempInstructor, "Introduction to Programming", ProgramAndYear.BS3);
 
-        tempInstructor = new Instructor("Alexandr", "Klimchik", Gender.MALE, random.nextInt(10000));
-        listOfInstructors.add(tempInstructor);
-        assignInstructorToCourse(tempInstructor, "Data Structures and Algorithms", ProgramAndYear.MS1);
-        assignInstructorToCourse(tempInstructor, "Industrial Robotics", ProgramAndYear.MS_R);
+                dayOfWeek = DayOfWeek.MONDAY;
+                {
 
-        tempInstructor = new Instructor("Mohamad", "Kassab", Gender.MALE, random.nextInt(10000));
-        listOfInstructors.add(tempInstructor);
-        assignInstructorToCourse(tempInstructor, "Data Modelling and Databases", ProgramAndYear.MS1);
-    }
 
-    private static void assignInstructorToCourse(Instructor instructor,
-                                                 String disciplineName, ProgramAndYear programAndYear) {
-        boolean foundCourse = false;
+                    courseTitle = "Data Modelling and Databases";
+                    course = searchForCourse(courseTitle, programAndYear, semester);
+                    {
+                        exerciseSchedule.add(new Lecture(course, "107", dayOfWeek, "09:00"));
+                        labSession = new LabSession(course, "1", "308", dayOfWeek, "17:10", searchAssistant("Sadegh", "Nobari"));
+                        exerciseSchedule.add(labSession);
 
-        for (LectureCourse lectureCourse : listOfLectureCourse) {
-            if (lectureCourse.getTitle().equals(disciplineName)
-                    && lectureCourse.getProgramAndYear().equals(programAndYear)
-                    && !lectureCourse.getListOfInstructorsInCourse().contains(instructor)) {
-                lectureCourse.getListOfInstructorsInCourse().add(instructor);
-                foundCourse = true;
+                        labSession = labSession.getCopy();
+                        labSession.setSubGroup("2");
+                        labSession.setBeginTime("15:30");
+                        labSession.setAssistant(searchAssistant("Sergey", "Gartsev"));
+                        exerciseSchedule.add(labSession);
+                    }
+                }
+
+                dayOfWeek = DayOfWeek.TUESDAY;
+                {
+
+                    courseTitle = "Data Structures and Algorithms";
+                    course = searchForCourse(courseTitle, programAndYear, semester);
+                    {
+                        exerciseSchedule.add(new Lecture(course, "107", dayOfWeek, "09:00"));
+
+                        labSession = new LabSession(course, "1", "307", dayOfWeek, "13:50", searchAssistant("Stas", "Protasov"));
+                        exerciseSchedule.add(labSession);
+
+                        labSession = labSession.getCopy();
+                        labSession.setSubGroup("2");
+                        labSession.setBeginTime("15:30");
+                        exerciseSchedule.add(labSession);
+                    }
+                }
+
+                dayOfWeek = DayOfWeek.WEDNESDAY;
+                {
+
+                    courseTitle = "Introduction to Programming";
+                    course = searchForCourse(courseTitle, programAndYear, semester);
+                    {
+                        exerciseSchedule.add(new Lecture(course, "107", dayOfWeek, "09:00"));
+
+                        labSession = new LabSession(course, "1", "308", dayOfWeek, "15:30", searchAssistant("Mansur", "Khazeev"));
+                        exerciseSchedule.add(labSession);
+
+                        labSession = labSession.getCopy();
+                        labSession.setSubGroup("2");
+                        labSession.setBeginTime("17:10");
+                        exerciseSchedule.add(labSession);
+                    }
+                }
+
+                dayOfWeek = DayOfWeek.THURSDAY;
+                {
+
+                    courseTitle = "Philosophy";
+                    course = searchForCourse(courseTitle, programAndYear, semester);
+                    {
+                        lecture = new Lecture(course, "107", dayOfWeek, "09:00");
+                        exerciseSchedule.add(lecture);
+
+                        lecture = lecture.getCopy();
+                        lecture.setBeginTime("10:40");
+                        exerciseSchedule.add(lecture);
+                    }
+                }
+
             }
-        }
-        if (!foundCourse)
-            System.out.println(String.format(templateNoDiscipline, disciplineName, programAndYear,
-                    "Instructor", instructor.getFirstName(), instructor.getLastName()));
-    }
 
-    private static void addAssistants() {
-        Assistant tempAssistant;
-
-        tempAssistant = new Assistant("Mansur", "Khazeev", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Introduction to Programming", ProgramAndYear.BS3);
-
-        tempAssistant = new Assistant("Stas", "Protasov", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Data Structures and Algorithms", ProgramAndYear.BS3);
-
-        tempAssistant = new Assistant("Sergey", "Gartsev", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Data Modelling and Databases", ProgramAndYear.BS3);
-
-        tempAssistant = new Assistant("Sadegh", "Nobari", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Data Modelling and Databases", ProgramAndYear.BS3);
-
-        tempAssistant = new Assistant("Artur", "Sagitov", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Computer Architecture", ProgramAndYear.BS1);
-
-        tempAssistant = new Assistant("Ilya", "Shimshik", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Computer Architecture", ProgramAndYear.BS1);
-
-        tempAssistant = new Assistant("Ahmad", "Muhammad", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Computer Architecture", ProgramAndYear.BS1);
-
-        tempAssistant = new Assistant("Ramil", "Kuleev", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Discrete Math/Logic", ProgramAndYear.BS1);
-
-        tempAssistant = new Assistant("Yunus", "Zaytaev", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Computer Architecture", ProgramAndYear.BS2);
-
-        tempAssistant = new Assistant("Bulat", "Gabbasov", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Computer Architecture", ProgramAndYear.BS2);
-        assignAssistantToCourse(tempAssistant, "Data Modelling and Databases", ProgramAndYear.MS1);
-
-        tempAssistant = new Assistant("Roman", "Lavrenov", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Data Structures and Algorithms", ProgramAndYear.MS1);
-
-        tempAssistant = new Assistant("Igor", "Danilov", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Data Structures and Algorithms", ProgramAndYear.MS1);
-
-        tempAssistant = new Assistant("Albina", "Khusainova", Gender.FEMALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Data Modelling and Databases", ProgramAndYear.MS1);
-
-        tempAssistant = new Assistant("Alyona", "Kozlova", Gender.FEMALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Managing Software Development", ProgramAndYear.MSIT_SE);
-
-        tempAssistant = new Assistant("Albert", "Nurgaliev", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Managing Software Development", ProgramAndYear.MSIT_SE);
-
-        tempAssistant = new Assistant("Vasilii", "Artemiev", Gender.MALE, random.nextInt(10000));
-        listOfAssistants.add(tempAssistant);
-        assignAssistantToCourse(tempAssistant, "Managing Software Development", ProgramAndYear.MSIT_SE);
-    }
-
-    private static void assignAssistantToCourse(Assistant assistant,
-                                                String disciplineName, ProgramAndYear programAndYear) {
-        boolean foundCourse = false;
-
-        for (LectureCourse lectureCourse : listOfLectureCourse) {
-            if (lectureCourse.getTitle().equals(disciplineName)
-                    && lectureCourse.getProgramAndYear().equals(programAndYear)
-                    && !lectureCourse.getListOfAssistantsInCourse().contains(assistant)) {
-                lectureCourse.getListOfAssistantsInCourse().add(assistant);
-                foundCourse = true;
-            }
         }
 
-        if (!foundCourse)
-            System.out.println(String.format(templateNoDiscipline, disciplineName, programAndYear,
-                    "Assistant", assistant.getFirstName(), assistant.getLastName()));
+        semester = Semester.AUTUMN2015;
+        {
+
+
+            programAndYear = ProgramAndYear.BS3;
+            {
+
+
+                dayOfWeek = DayOfWeek.MONDAY;
+                {
+
+
+                    courseTitle = "Data Modelling and Databases";
+                    course = searchForCourse(courseTitle, programAndYear, semester);
+                    {
+                        exerciseSchedule.add(new Lecture(course, "108", dayOfWeek, "09:00"));
+                        labSession = new LabSession(course, "1", "307", dayOfWeek, "10:40", searchAssistant("Sadegh", "Nobari"));
+                        exerciseSchedule.add(labSession);
+
+                        labSession = labSession.getCopy();
+                        labSession.setSubGroup("5");
+                        labSession.setRoom("308");
+                        labSession.setBeginTime("13:20");
+                        labSession.setAssistant(searchAssistant("Waqas", "Waqas"));
+                        exerciseSchedule.add(labSession);
+                    }
+                }
+
+                dayOfWeek = DayOfWeek.TUESDAY;
+                {
+
+                    courseTitle = "Data Structures and Algorithms";
+                    course = searchForCourse(courseTitle, programAndYear, semester);
+                    {
+                        exerciseSchedule.add(new Lecture(course, "108", dayOfWeek, "09:00"));
+
+                        labSession = new LabSession(course, "1", "318", dayOfWeek, "10:40", searchAssistant("Adel", "Adel"));
+                        exerciseSchedule.add(labSession);
+
+                        labSession = labSession.getCopy();
+                        labSession.setSubGroup("5");
+                        labSession.setRoom("308");
+                        labSession.setBeginTime("13:20");
+                        labSession.setAssistant(searchAssistant("Ahmed", "Kamil"));
+                        exerciseSchedule.add(labSession);
+                    }
+                }
+
+                dayOfWeek = DayOfWeek.WEDNESDAY;
+                {
+
+                    courseTitle = "Introduction to Programming";
+                    course = searchForCourse(courseTitle, programAndYear, semester);
+                    {
+                        exerciseSchedule.add(new Lecture(course, "108", dayOfWeek, "09:00"));
+
+                        labSession = new LabSession(course, "1", "307", dayOfWeek, "10:40", searchAssistant("Victor", "Rivera"));
+                        exerciseSchedule.add(labSession);
+
+                        labSession = labSession.getCopy();
+                        labSession.setSubGroup("5");
+                        labSession.setRoom("318");
+                        labSession.setBeginTime("13:20");
+                        labSession.setAssistant(searchAssistant("D.de", "Carvalho"));
+                        exerciseSchedule.add(labSession);
+                    }
+                }
+
+                dayOfWeek = DayOfWeek.THURSDAY;
+                {
+
+                    courseTitle = "Philosophy";
+                    course = searchForCourse(courseTitle, programAndYear, semester);
+                    {
+                        lecture = new Lecture(course, "108", dayOfWeek, "09:00");
+                        exerciseSchedule.add(lecture);
+
+                        lecture = lecture.getCopy();
+                        lecture.setBeginTime("10:40");
+                        exerciseSchedule.add(lecture);
+                    }
+                }
+
+            }
+        }
     }
 
-    private static void addStudents() {
-        listOfStudents.add(new Student("Sergei", "Efron", Gender.MALE, random.nextInt(10000), ProgramAndYear.BS1));
-        listOfStudents.add(new Student("Vera", "Mukhina", Gender.FEMALE, random.nextInt(10000), ProgramAndYear.BS3));
-        listOfStudents.add(new Student("Leonardo", "da Vinci", Gender.MALE, random.nextInt(10000), ProgramAndYear.MSIT_SE));
-        listOfStudents.add(new Student("Marina", "Tsvetaeva", Gender.FEMALE, random.nextInt(10000), ProgramAndYear.MS_R));
+    private static Assistant searchAssistant(String firstName, String lastName) {
+        Assistant assistant = null;
+        for (int i = 0; i < listOfAssistants.size(); i++) {
+            assistant = listOfAssistants.get(i);
+            if (assistant.getFirstName().equals(firstName)
+                    && assistant.getLastName().equals(lastName))
+                break;
+        }
 
-        for (LectureCourse lectureCourse : listOfLectureCourse) {
+        return assistant;
+    }
+
+    private static void initializeCourses() {
+        String courseTitle;
+        ProgramAndYear programAndYear;
+        CoreElective coreElective;
+        Semester semester;
+        List<String> stringList;
+        List<ProgramAndYear> programAndYearList;
+
+        semester = Semester.AUTUMN2016; {
+
+            coreElective = CoreElective.CORE; {
+
+
+                programAndYear = ProgramAndYear.BS3;
+                stringList = Arrays.asList(
+                        "Data Modelling and Databases",
+                        "Data Structures and Algorithms",
+                        "Introduction to Programming",
+                        "Philosophy");
+                addCoursesToList(stringList, programAndYear, coreElective, semester);
+
+
+                programAndYear = ProgramAndYear.MSIT_SE;
+                stringList = Arrays.asList(
+                        "Managing Software Development",
+                        "Models of Software Systems",
+                        "Introduction to Personal Software Process",
+                        "Communication for Software Engineers",
+                        "Methods: Deciding What to Design",
+                        "User Experience and User Interface Design Fundamentals");
+                addCoursesToList(stringList, programAndYear, coreElective, semester);
+
+
+
+            }
+
+
+            coreElective = CoreElective.ELECTIVE; {
+                courseTitle = "English";
+                programAndYearList = Arrays.asList(
+                        ProgramAndYear.BS3,
+                        ProgramAndYear.MSIT_SE);
+                addCoursesToList(programAndYearList, courseTitle, coreElective, semester);
+            }
+
+        }
+
+        semester = Semester.AUTUMN2015; {
+
+            coreElective = CoreElective.CORE; {
+
+
+                programAndYearList = Arrays.asList(
+                        ProgramAndYear.BS3,
+                        ProgramAndYear.MSIT_SE);
+                courseTitle = "Data Modelling and Databases";
+                addCoursesToList(programAndYearList, courseTitle, coreElective, semester);
+                courseTitle = "Data Structures and Algorithms";
+                addCoursesToList(programAndYearList, courseTitle, coreElective, semester);
+                courseTitle = "Introduction to Programming";
+                addCoursesToList(programAndYearList, courseTitle, coreElective, semester);
+
+
+                programAndYearList = Arrays.asList(
+                        ProgramAndYear.BS3);
+                courseTitle = "Philosophy";
+                addCoursesToList(programAndYearList, courseTitle, coreElective, semester);
+
+
+            }
+
+            coreElective = CoreElective.ELECTIVE; {
+                courseTitle = "English";
+                programAndYearList = Arrays.asList(
+                        ProgramAndYear.BS3,
+                        ProgramAndYear.MSIT_SE);
+                addCoursesToList(programAndYearList, courseTitle, coreElective, semester);
+            }
+
+        }
+    }
+
+    private static void addCoursesToList(List<String> list, ProgramAndYear programAndYear,
+                                         CoreElective coreElective, Semester semester) {
+        Course course;
+        for(String courseTitle: list) {
+            course = createCourse(courseTitle, programAndYear, coreElective, semester);
+            listOfCourse.add(course);
+        }
+    }
+
+    private static void addCoursesToList(List<ProgramAndYear> list, String courseTitle,
+                                         CoreElective coreElective, Semester semester) {
+        Course course;
+        for(ProgramAndYear programAndYearMember : list) {
+            course = createCourse(courseTitle, programAndYearMember, coreElective, semester);
+            listOfCourse.add(course);
+        }
+    }
+
+    private static Course createCourse(String title, ProgramAndYear programAndYear,
+                                       CoreElective coreElective, Semester semester) {
+        Course newCourse = new Course(title, programAndYear, coreElective, semester);
+
+        return newCourse;
+    }
+
+    private static void initializeStudents() {
+        FileReaderWriter fileReaderWriter = new FileReaderWriter();
+        ArrayList<String> stringArrayList = fileReaderWriter.readFromInputFile("studentsList.txt");
+        String personFirstName, personLastName;
+        Random random = new Random(new Date().getTime());
+        Semester semester;
+        ProgramAndYear programAndYear;
+        String subGroup;
+        Gender gender;
+        String[] array;
+
+        for(String personString: stringArrayList) {
+            array = parsePersonString(personString);
+            personFirstName = array[0];
+            personLastName = array[1];
+            gender = array[2].equals("MALE") ? Gender.MALE : Gender.FEMALE;
+
+            if (random.nextInt(2) == 0)
+                semester = Semester.AUTUMN2015;
+            else
+                semester = Semester.AUTUMN2016;
+
+            subGroup = "" + (random.nextInt(2) + 1);
+
+            switch (random.nextInt(2)) {
+                case 0:
+                    programAndYear = ProgramAndYear.BS3;
+                    break;
+                default:
+                    programAndYear = ProgramAndYear.MSIT_SE;
+                    break;
+            }
+
+            listOfStudents.add(new Student(personFirstName, personLastName, gender, programAndYear, semester, subGroup));
+        }
+
+        for (Course course : listOfCourse) {
             for (Student student : listOfStudents) {
-                if (student.getProgramAndYear().equals(lectureCourse.getProgramAndYear())) {
-                    lectureCourse.getListOfStudentsInCourse().add(student);
+                if (student.getProgramAndYear().equals(course.getProgramAndYear())) {
+                    course.getListOfStudentsInCourse().add(student);
                 }
             }
         }
     }
 
-    private static void addLectureCourses() {
-        LectureCourse tempLectureCourse;
+    private static void initializeInstructors() {
+        Instructor instructor;
+        ProgramAndYear programAndYear;
+        Gender gender;
+        Semester semester;
+        String courseTitle;
 
-        tempLectureCourse = new LectureCourse(random.nextInt(10000), "Computer Architecture", ProgramAndYear.BS1,
-                CoreElective.CORE, Semester.AUTUMN);
-        listOfLectureCourse.add(tempLectureCourse);
-        exerciseSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.MONDAY));
+        gender = Gender.MALE;{
 
-        tempLectureCourse = new LectureCourse(random.nextInt(10000), "Discrete Math/Logic", ProgramAndYear.BS1,
-                CoreElective.CORE, Semester.AUTUMN);
-        listOfLectureCourse.add(tempLectureCourse);
-        exerciseSchedule.add(new Lecture(tempLectureCourse, 110, DayOfWeek.TUESDAY));
+            semester = Semester.AUTUMN2016; {
 
-        tempLectureCourse = new LectureCourse(random.nextInt(10000), "Computer Architecture", ProgramAndYear.BS2,
-                CoreElective.CORE, Semester.AUTUMN);
-        listOfLectureCourse.add(tempLectureCourse);
-        exerciseSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.THURSDAY));
 
-        tempLectureCourse = new LectureCourse(random.nextInt(10000), "Data Modelling and Databases", ProgramAndYear.BS3,
-                CoreElective.CORE, Semester.AUTUMN);
-        listOfLectureCourse.add(tempLectureCourse);
-        exerciseSchedule.add(new Lecture(tempLectureCourse, 101, DayOfWeek.FRIDAY));
-        exerciseSchedule.add(new LabSession(tempLectureCourse, 301, DayOfWeek.FRIDAY));
-        exerciseSchedule.add(new Examination(tempLectureCourse, 101, DayOfWeek.FRIDAY));
+                instructor = createInstructor("Adil", "Khan", gender);
+                assignPersonToCourse(instructor, "Data Structures and Algorithms", ProgramAndYear.BS3, semester);
 
-        tempLectureCourse = new LectureCourse(random.nextInt(10000), "Data Structures and Algorithms", ProgramAndYear.BS3,
-                CoreElective.CORE, Semester.AUTUMN);
-        listOfLectureCourse.add(tempLectureCourse);
-        exerciseSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.SATURDAY));
-        exerciseSchedule.add(new LabSession(tempLectureCourse, 320, DayOfWeek.SATURDAY));
-        exerciseSchedule.add(new Examination(tempLectureCourse, 120, DayOfWeek.SATURDAY));
 
-        tempLectureCourse = new LectureCourse(random.nextInt(10000), "Introduction to Programming", ProgramAndYear.BS3,
-                CoreElective.CORE, Semester.SPRING);
-        listOfLectureCourse.add(tempLectureCourse);
-        exerciseSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.MONDAY));
-        exerciseSchedule.add(new LabSession(tempLectureCourse, 320, DayOfWeek.MONDAY));
-        exerciseSchedule.add(new Examination(tempLectureCourse, 120, DayOfWeek.MONDAY));
+                programAndYear = ProgramAndYear.BS3;
+                {
 
-        tempLectureCourse = new LectureCourse(random.nextInt(10000), "Data Structures and Algorithms", ProgramAndYear.MS1,
-                CoreElective.CORE, Semester.SPRING);
-        listOfLectureCourse.add(tempLectureCourse);
-        exerciseSchedule.add(new Lecture(tempLectureCourse, 120, DayOfWeek.FRIDAY));
+                    instructor = createInstructor("Eugene", "Zouev", gender);
+                    assignPersonToCourse(instructor, "Introduction to Programming", programAndYear, semester);
 
-        tempLectureCourse = new LectureCourse(random.nextInt(10000), "Data Modelling and Databases", ProgramAndYear.MS1,
-                CoreElective.CORE, Semester.SPRING);
-        listOfLectureCourse.add(tempLectureCourse);
-        exerciseSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.WEDNESDAY));
+                    instructor = createInstructor("Rustem", "Tsiunchuk", gender);
+                    assignPersonToCourse(instructor, "Philosophy", programAndYear, semester);
 
-        tempLectureCourse = new LectureCourse(random.nextInt(10000), "Managing Software Development", ProgramAndYear.MSIT_SE,
-                CoreElective.CORE, Semester.SPRING);
-        listOfLectureCourse.add(tempLectureCourse);
-        exerciseSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.TUESDAY));
+                    instructor = createInstructor("Qiang", "Qu", gender);
+                    assignPersonToCourse(instructor, "Data Modelling and Databases", programAndYear, semester);
 
-        tempLectureCourse = new LectureCourse(random.nextInt(10000), "Industrial Robotics", ProgramAndYear.MS_R,
-                CoreElective.CORE, Semester.SPRING);
-        listOfLectureCourse.add(tempLectureCourse);
-        exerciseSchedule.add(new Lecture(tempLectureCourse, 130, DayOfWeek.FRIDAY));
+
+                }
+
+
+                programAndYear = ProgramAndYear.MSIT_SE;
+                {
+
+                    instructor = createInstructor("Ales", "Zivkovic", gender);
+                    assignPersonToCourse(instructor, "Managing Software Development", programAndYear, semester);
+
+                    instructor = createInstructor("Nestor", "Catano", gender);
+                    assignPersonToCourse(instructor, "Models of Software Systems", programAndYear, semester);
+
+                    instructor = createInstructor("Vasilii", "Artemiev", gender);
+                    assignPersonToCourse(instructor, "Introduction to Personal Software Process", programAndYear, semester);
+
+                    instructor = createInstructor("Daniel", "Johnston", gender);
+                    assignPersonToCourse(instructor, "Communication for Software Engineers", programAndYear, semester);
+
+                    instructor = createInstructor("Alberto", "Sillitti", gender);
+                    assignPersonToCourse(instructor, "Methods: Deciding What to Design", programAndYear, semester);
+
+                    instructor = createInstructor("Daniel", "Johnston", gender);
+                    assignPersonToCourse(instructor, "English", programAndYear, semester);
+
+                    instructor = createInstructor("Said", "Kadyrov", gender);
+                    assignPersonToCourse(instructor, "User Experience and User Interface Design Fundamentals", programAndYear, semester);
+
+
+                }
+
+
+            }
+
+            semester = Semester.AUTUMN2015; {
+
+                instructor = createInstructor("Rustem", "Tsiunchuk", gender);
+                assignPersonToCourse(instructor, "Philosophy", ProgramAndYear.BS3, semester);
+
+                courseTitle = "Data Modelling and Databases";
+                instructor = createInstructor("Qiang", "Qu", gender);
+                assignPersonToCourse(instructor, courseTitle, ProgramAndYear.BS3, semester);
+                assignPersonToCourse(instructor, courseTitle, ProgramAndYear.MSIT_SE, semester);
+
+                courseTitle = "Data Structures and Algorithms";
+                instructor = createInstructor("Adil", "Khan", gender);
+                assignPersonToCourse(instructor, courseTitle, ProgramAndYear.BS3, semester);
+                assignPersonToCourse(instructor, courseTitle, ProgramAndYear.MSIT_SE, semester);
+
+
+                courseTitle = "Introduction to Programming";
+                instructor = createInstructor("M", "Mazzara", gender);
+                assignPersonToCourse(instructor, courseTitle, ProgramAndYear.BS3, semester);
+                assignPersonToCourse(instructor, courseTitle, ProgramAndYear.MSIT_SE, semester);
+
+
+            }
+        }
     }
 
-    private static void printAllInfoAboutCourses() {
-        String template = "%s course %s \"%s\", program %s, %s semester";
+    private static Instructor createInstructor(String firstName, String lastName, Gender gender) {
+        Instructor instructor = new Instructor(firstName, lastName, gender);
+        listOfInstructors.add(instructor);
+        return instructor;
+    }
 
-        for (LectureCourse lectureCourse : listOfLectureCourse) {
-            System.out.println(String.format(template, lectureCourse.getCoreElective(),
-                    lectureCourse.getLectureCourseID(), lectureCourse.getTitle(),
-                    lectureCourse.getProgramAndYear(), lectureCourse.getSemester()));
-            System.out.println("Instructor:");
-            for (Instructor instructor : lectureCourse.getListOfInstructorsInCourse()) {
-                System.out.println("            " + instructor.getFirstName() + " " + instructor.getLastName()
-                        + ", personal number " + instructor.getPersonID());
-            }
-            System.out.println("Assistants:");
-            for (Assistant assistant : lectureCourse.getListOfAssistantsInCourse()) {
-                System.out.println("            " + assistant.getFirstName() + " " + assistant.getLastName()
-                        + ", personal number " + assistant.getPersonID());
-            }
-            System.out.println("Students:");
-            for (Student student : lectureCourse.getListOfStudentsInCourse()) {
-                System.out.println("            " + student.getFirstName() + " " + student.getLastName()
-                        + ", personal number " + student.getPersonID());
-            }
-            System.out.println();
+    private static String[] parsePersonString(String personString) {
+        String[] array = new String[3];
+        int commaPosition = personString.indexOf(",");
+        int colonPosition = personString.indexOf(":");
+        array[0] = personString.substring(0, commaPosition);
+        array[1] = personString.substring(commaPosition + 1, colonPosition);
+        array[2] = personString.substring(colonPosition + 1).toUpperCase();
+        return array;
+    }
 
+    private static void initializeAssistants() {
+        FileReaderWriter fileReaderWriter = new FileReaderWriter();
+        ArrayList<String> stringArrayList = fileReaderWriter.readFromInputFile("assistantList.txt");
+        String personFirstName, personLastName;
+        Gender gender;
+        String[] array;
+
+        for(String personString: stringArrayList) {
+            array = parsePersonString(personString);
+            personFirstName = array[0];
+            personLastName = array[1];
+            gender = array[2].equals("MALE") ? Gender.MALE : Gender.FEMALE;
+
+            listOfAssistants.add(new Assistant(personFirstName, personLastName, gender));
         }
-//        System.out.println();
+    }
+
+    private static void assignPersonToCourse(Person person, String disciplineName, ProgramAndYear programAndYear, Semester semester) {
+        boolean foundCourse = false;
+
+        for (Course course : listOfCourse) {
+            if (course.getTitle().equals(disciplineName)
+                    && course.getProgramAndYear().equals(programAndYear)
+                    && course.getSemester().equals(semester)) {
+                if (person instanceof Instructor
+                        && !course.getListOfInstructorsInCourse().contains(person)) {
+                    course.getListOfInstructorsInCourse().add((Instructor) person);
+                    foundCourse = true;
+                    break;
+                }
+                else if (person instanceof Assistant
+                        && !course.getListOfAssistantsInCourse().contains(person)) {
+                    course.getListOfAssistantsInCourse().add((Assistant) person);
+                    foundCourse = true;
+                    break;
+                }
+            }
+        }
+
+        if (!foundCourse)
+            System.out.println(String.format(templateNoDiscipline, disciplineName, programAndYear,
+                    person.getPersonType(), person.getFirstName(), person.getLastName()));
+    }
+
+    private static Course searchForCourse(String courseTitle, ProgramAndYear programAndYear, Semester semester) {
+        Course course = null;
+        for (int i = 0; i < listOfCourse.size(); i++) {
+            course = listOfCourse.get(i);
+            if (course.getTitle().equals(courseTitle)
+                    && course.getProgramAndYear().equals(programAndYear)
+                    && course.getSemester().equals(semester))
+                break;
+        }
+
+        return course;
     }
 }
