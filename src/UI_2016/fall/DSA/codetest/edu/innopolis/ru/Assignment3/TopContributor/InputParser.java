@@ -34,7 +34,8 @@ class InputParser {
                 contributorName = currentString.substring(0,semicolonPosition);
                 contributionValue = Integer.parseInt(currentString.substring(semicolonPosition + 2, signATPosition));
 
-                priorityQueue.put(new Node(contributionValue, contributorName));
+//                priorityQueue.put(new Node(contributionValue, contributorName));
+                priorityQueue.put(contributionValue, contributorName);
             } else
                 break;
             i++;

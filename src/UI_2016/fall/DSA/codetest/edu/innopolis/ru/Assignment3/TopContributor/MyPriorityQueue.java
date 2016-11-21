@@ -1,10 +1,13 @@
 package UI_2016.fall.DSA.codetest.edu.innopolis.ru.Assignment3.TopContributor;
 
-class MyPriorityQueue {
+//class MyPriorityQueue {
+class MyPriorityQueue<T extends Comparable<T>> {
     private static Heap heap = new Heap();
 
-    void put(Node newNode) {
-        heap.put(newNode);
+    void put(int key, T value) {
+        heap.put(key, value);
+//    void put(Node newNode) {
+//        heap.put(newNode);
 
         upheap(heap.getSize() - 1);
     }

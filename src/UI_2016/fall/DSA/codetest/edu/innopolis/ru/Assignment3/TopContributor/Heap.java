@@ -2,12 +2,15 @@ package UI_2016.fall.DSA.codetest.edu.innopolis.ru.Assignment3.TopContributor;
 
 import java.util.ArrayList;
 
-class Heap {
+//class Heap {
+class Heap<T extends Comparable<T>> {
     private static ArrayList<Node> heap = new ArrayList<>();
     private static int notNullElementsNumber = 0;
 
-    void put(Node newNode) {
-        heap.add(newNode);
+    //    void put(Node newNode) {
+//        heap.add(newNode);
+    void put(int key, T value) {
+        heap.add(new Node(key, value));
         notNullElementsNumber++;
     }
 
