@@ -60,18 +60,12 @@
 //            secondVertexIndex = vertexMap.get(currentEdge.getNode2().getName()).getIndex();
 //
 //            ams[firstVertexIndex][secondVertexIndex] = currentEdge;
-//            ams[secondVertexIndex][firstVertexIndex] = new Edge(currentEdge.getNode2(),
-//                    currentEdge.getNode1(),
-//                    currentEdge.getDistance(),
-//                    currentEdge.getTime(),
-//                    currentEdge.getCost());
 //        }
 //    }
 //
 //    /**
 //     * Парсит входную строку vertexString, вытаскивает названия вершин, дистанцию, время и стоимость.
 //     * Возвращает объект Edge, в котором указаны распарсенные ранее данные.
-//     * В глобальных переменных firstVertexName и secondVertexName указываются названия вершин.
 //     */
 //    private Edge getCurrentEdge(String vertexString,
 //                                HashMap<String, Vertex> vertexMap) {
@@ -111,12 +105,14 @@
 //    ArrayList<Edge> parseInput(ArrayList<String> inputList) {
 //        String delimiter = " ";
 //        ArrayList<Edge> edgeArrayList = new ArrayList<>();
+//        Vertex vertex1, vertex2;
+//        float weight;
 //        for (String string : inputList) {
 //            beginPosition = 0;
 //            endPosition = 0;
-//            Vertex vertex1 = new Vertex(getNextSubString(string, delimiter));
-//            Vertex vertex2 = new Vertex(getNextSubString(string, delimiter));
-//            float weight = Float.parseFloat(getNextSubString(string, delimiter));
+//            vertex1 = new Vertex(getNextSubString(string, delimiter));
+//            vertex2 = new Vertex(getNextSubString(string, delimiter));
+//            weight = Float.parseFloat(getNextSubString(string, delimiter));
 //            edgeArrayList.add(new Edge(vertex1, vertex2, weight));
 //        }
 //        return edgeArrayList;

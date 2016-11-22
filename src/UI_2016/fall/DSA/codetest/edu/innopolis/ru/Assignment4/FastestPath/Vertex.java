@@ -2,7 +2,6 @@
 //
 //class Vertex {
 //    private String name;
-//    private boolean isVisited;
 //    private int index;
 //    private final float bigFloat = 999999999f;
 //
@@ -10,7 +9,6 @@
 //
 //    Vertex(String name) {
 //        this.name = name;
-//        isVisited = false;
 //        distance = bigFloat;
 //        time = bigFloat;
 //        cost = bigFloat;
@@ -18,7 +16,6 @@
 //
 //    Vertex(String name, int index) {
 //        this.name = name;
-//        isVisited = false;
 //        distance = bigFloat;
 //        time = bigFloat;
 //        cost = bigFloat;
@@ -33,7 +30,6 @@
 //
 //    void setName(String name) {this.name = name;}
 //    void setDistance(float distance) {this.distance = distance;}
-//    void setAsVisited() {isVisited = true;}
 //    void setIndex(int index) {this.index = index;}
 //    void setTime(float time) {this.time = time;}
 //    void setCost(float cost) {this.cost = cost;}
